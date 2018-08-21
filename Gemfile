@@ -57,3 +57,5 @@ gem 'popper_js', '~> 1.14.3'
 gem 'bootstrap', '4.0.0'
 
 gem 'jquery-rails'
+
+gem 'devise'

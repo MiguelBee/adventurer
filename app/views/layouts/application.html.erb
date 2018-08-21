@@ -36,7 +36,9 @@
 		                  <button type="submit" class="btn btn-primary btn-block">Login</button>
 		                </div>
 		                <div class="form-group text-center">
-		                  <small><a href="#" data-toggle="modal" data-target="#modalPassword">Forgot password?</a></small>
+		                  <small><a href="#" data-toggle="modal" data-target="#modalPassword">Sign Up</a></small>
+		                  <br />
+		                  <small><a href="#" data-toggle="modal" data-target="#modalPassword">Forgot Password?</a></small>
 		                </div>
 		              </form>
 		            </li>
@@ -47,6 +49,13 @@
 		  </div>
 		</nav>
 	</header>
+
+	<% if notice.present? %>
+		<p class="alert alert-info"><%= notice %></p>
+	<% end %>
+	<% if alert.present? %>
+		<p class="alert alert-danger"><%= alert %></p>
+	<% end %>
 
 	<div id="modalPassword" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">

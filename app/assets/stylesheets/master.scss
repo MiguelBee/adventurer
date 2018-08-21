@@ -1,0 +1,22 @@
+@import "bootstrap";
+
+body {
+	background-image: image_url("country-quilt-dark.png");
+	padding-top: 65px;
+}
+
+.clear {
+	clear: both;
+}
+
+button:focus {
+    outline: 0;
+}
+
+.navbar .dropdown-menu .form-control {
+    width: 200px;
+}
+
+h1 {
+	color: white;
+}

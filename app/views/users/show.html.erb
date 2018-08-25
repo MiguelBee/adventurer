@@ -1,0 +1,9 @@
+<div class="container" col-4>
+	<h1><%= current_user.first_name %></h1>
+	<h1><%= current_user.last_name %></h1>
+	<h2><%= current_user.email %></h2>
+	<h2><%= current_user.birthday %></h2>
+	<h3>"<%= current_user.quote %>"</h3>
+</div>
+
+<%= link_to "Update Adventurer Information", edit_user_registration_path, class: "btn btn-primary" %>

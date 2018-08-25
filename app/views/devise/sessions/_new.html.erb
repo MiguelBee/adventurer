@@ -1,0 +1,13 @@
+<%= simple_form_for(:user, url: user_session_path) do |f| %>
+  <div class="field">
+    <%= f.input :email %>
+    <%= f.input :password %>
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
+<div class="form-group text-center">
+    <small><%= link_to "Sign Up", new_user_registration_path %></small>
+    <br />
+    <small><%= link_to "Forgot password?", new_user_password_path %></small>
+</div>

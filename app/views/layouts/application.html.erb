@@ -27,7 +27,7 @@
 				        <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Login <span class="caret"></span></button>
 				          <ul class="dropdown-menu dropdown-menu-right mt-2">
 				            <li class="px-3 py-2">
-				              <%= render 'devise/sessions/new' %>
+				              <%= render partial: 'devise/sessions/new' %>
 				            </li>
 				          </ul>
 				        </li>
@@ -47,7 +47,7 @@
 	<% if alert.present? %>
 		<p class="alert alert-danger"><%= alert %></p>
 	<% end %>
-		
+
 	<br class="clear">
 
     <%= yield %>

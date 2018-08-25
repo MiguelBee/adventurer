@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, path: 'users', controllers: {
+  	sessions: "users/sessions",
+  	registrations: "users/registrations",
+  	passwords: "users/passwords",
+  	confirmations: "users/confirmations"
+  }
+
   root "static_pages#index"
+
+  resources :users, only: :show
 
   get '/contact', to: 'static_pages#contact' 
 

@@ -1,18 +1,19 @@
 require 'test_helper'
 
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
-    get static_pages_index_url
+  test "should get index as root" do
+    get root_path
     assert_response :success
+    assert_select ('div#exCollapsingNavbar'), 1
   end
 
-  test "should get contact" do
-    get static_pages_contact_url
+  test "should get contact page" do
+    get contact_path
     assert_response :success
   end
 
   test "should get about" do
-    get static_pages_about_url
+    get about_path
     assert_response :success
   end
 

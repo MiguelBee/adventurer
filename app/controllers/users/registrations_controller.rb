@@ -13,9 +13,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     @user = User.create(user_params)
     if @user.save
-      redirect_to root_path
-    #else
-    #  redirect_to root_path
+      redirect_to user_path(@user)
+    else
+      render :new
     end
   end
 

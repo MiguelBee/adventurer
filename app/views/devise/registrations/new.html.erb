@@ -1,19 +1,19 @@
 <div class="booyah-box col-10 offset-1">
   <h2>Sign up</h2>
 
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= simple_form_for(User.new, url: user_registration_path, method: :post) do |f| %>
     <%= devise_error_messages! %>
 
     <div class="field">
-      <%= f.input :email %>
-      <%= f.input :first_name %>
-      <%= f.input :last_name %>
-      <%= f.input :birthday, label: "Birthday (must be 18 years old to register)", as: :date, start_year: Date.today.year - 90,
+      <%= f.input :email, required: true %>
+      <%= f.input :first_name, required: true %>
+      <%= f.input :last_name, required: true %>
+      <%= f.input :birthday, required: true, hint: "Birthday (must be 18 years old to register)", as: :date, start_year: Date.today.year - 90,
                               end_year: Date.today.year - 18, order: [:month, :day, :year] %>
-      <%= f.input :quote, placeholder: "Write your personal quote that defines you", as: :text %>
-      <div class="actions">
-        <%= f.submit "Create Account" %>
-      </div>
+      <%= f.input :quote, required: true, placeholder: "Write your personal quote that defines you", as: :text %>
+      <%= f.input :password, required: true, placeholder: 'Must be at least #{@minimum_password_length} characters long' %>
+      <%= f.input :password_confirmation, required: true, placeholder: 're-type password' %>
+      <%= f.submit "Create Account" %>
   <% end %>
 
   <%= render "devise/shared/links" %>

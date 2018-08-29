@@ -3,26 +3,21 @@
 
   <%= simple_form_for(:user, url: user_registration_path, method: :patch) do |f| %>
     <%= devise_error_messages! %>
-
-    <div class="field">
-      <%= f.input :first_name %>
-      <%= f.input :last_name %>
-      <%= f.input :birthday, as: :date, start_year: Date.today.year - 90,
-                              end_year: Date.today.year - 18, order: [:month, :day, :year] %>
-      <%= f.input :quote, as: :text %>
     
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-      <% end %>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :birthday, as: :date, start_year: Date.today.year - 90,
+                            end_year: Date.today.year - 18, order: [:month, :day, :year] %>
+    <%= f.input :quote, as: :text %>
+  
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
 
-      <%= f.input :password, label: "New Password (leave blank if you prefer not to change it)", placeholder: "#{@minimum_password_length} characters minimun" %>
-      <%= f.input :password_confirmation, placeholder: "re-type new password" %><br />
-      <%= f.input :current_password, placeholder: "We need you current password for confirmation" %>
-      
-      <div class="actions">
-        <%= f.submit "Update" %>
-      </div>
-    </div>
+    <%= f.input :password, label: "New Password (leave blank if you prefer not to change it)", placeholder: "#{@minimum_password_length} characters minimun" %>
+    <%= f.input :password_confirmation, placeholder: "re-type new password" %><br />
+    <%= f.input :current_password, placeholder: "We need you current password for confirmation" %>
+    <%= f.submit "Update" %>
   <% end %>
 
   <h3>Cancel my account</h3>

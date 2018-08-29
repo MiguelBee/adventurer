@@ -5,17 +5,9 @@
     <%= devise_error_messages! %>
     <%= f.hidden_field :reset_password_token %>
 
-    <div class="field">
       <%= f.input :password, label: "Password (must be #{@minum_password_length} characters" %>
-    </div>
-
-    <div class="field">
       <%= f.input :password_confirmation, placeholder: "Re-type password" %>
-    </div>
-
-    <div class="actions">
       <%= f.submit "Change my password" %>
-    </div>
   <% end %>
 
   <%= render "devise/shared/links" %>

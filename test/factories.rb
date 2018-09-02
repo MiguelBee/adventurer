@@ -1,4 +1,7 @@
 FactoryBot.define do
+  factory :avatar do
+    
+  end
 	factory :user do
 		sequence :email do |n|
 			"fakeEmail#{n}@gmail.com"

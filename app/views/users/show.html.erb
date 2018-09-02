@@ -1,27 +1,52 @@
-<div class="row">
-	<div class="user_info col-2 offset-1 container">
-		<h1><%= @current_user.first_name %></h1>
-		<h1><%= @current_user.last_name %></h1>
-		<h2><%= @current_user.email %></h2>
-		<h2><%= @current_user.birthday %></h2>
-		<h3>"<%= @current_user.quote %>"</h3>
-	</div>
-	<div class="user_social_media col-6">
-		<table class="row float-right container">
-			<td>Facbook</td>
-			&nbsp;
-			&nbsp;
-			<td>Instagram</td>
-			&nbsp;
-			&nbsp;
-			<td>Twitter</td>
-			&nbsp;
-			&nbsp;
-		</table>
+<div class="container-fluid">	
+	<div class="row">
+		<div class="user_info col-sm-4 float-left">
+			<% if @current_user.avatars.present? %>
+				<% @current_user.avatars.each do |avatar| %>
+					<div class="img_thumbnail">
+						<%= image_tag avatar.picture %>
+					</div>
+				<% end %>
+			<% else %>
+				<!-- Button trigger modal -->
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+				  Upload Profile Picture
+				</button>
+			<% end %>
+			
+
+			<h1><%= @current_user.first_name %></h1>
+			<h1><%= @current_user.last_name %></h1>
+			<h2>Age: <%= @current_user.age %></h2>
+			<h3>Quote:<i>"<%= @current_user.quote %>"</i></h3>
+			<%= link_to "Update Information", edit_user_registration_path, class: "update_user_btn btn btn-primary" %>
+		</div>
+		<div class="clear"></div>
+		<div class="user_social_media col-sm-6 float-right">
+			<table>
+				<td>Facbook</td>
+				<div class="clear"></div>
+				<td>Instagram</td>
+				&nbsp; &nbsp;
+				<td>Twitter</td>
+				&nbsp; &nbsp;
+			</table>
+		</div>
 	</div>
 </div>
 <br>
 <hr>
-
-
-<%= link_to "Update Information", edit_user_registration_path, class: "update_user_btn btn btn-primary" %>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Picture Upload</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <%= render 'avatars/new' %> 
+    </div>
+  </div>
+</div>

@@ -7,17 +7,20 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 	end
 
 	test "create new user" do
+		user = FactoryBot.create(:user)
 		post user_registration_path, params: {
 						user: {
-							email: users(:miguel).email,
-							first_name: users(:miguel).first_name, last_name: users(:miguel).last_name,
-							birthday: users(:miguel).birthday,
-							password: users(:miguel).encrypted_password,
-							password_confirmation: users(:miguel).encrypted_password
+							email: user.email,
+							first_name: user.first_name, last_name: user.last_name,
+							birthday: user.birthday,
+							quote: user.quote,
+							password: user.password,
+							password_confirmation: user.password_confirmation
 						}
 		}
-		 assert_response :success
-		 assert response.body.include?(users(:miguel).email)
+		follow_redirect!
+		#assert_redirected_to user_path(user)
+		assert response.body.include?(users(:miguel).email)
 	end
 
 	test "will not save with missing info" do
@@ -32,15 +35,20 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should get show" do
   	user = FactoryBot.create(:user)
-  	sign_in user
     get user_path(user)
     assert_response :success
     assert response.body.include?(user.email)
   end
 
-  test "will not get show without login" do
-  	get user_path(users(:miguel))
-  	assert_redirected_to new_user_session_path
+  test "will update user" do
+  	user = FactoryBot.create(:user)
+  	sign_in user
+  	patch user_registration_path, params: {
+  						user:{
+  							quote: "this is a test quote"
+  						}
+  	}
+  	assert_response :success
+  	assert_equal "this is a test quote", user.quote
   end
-
 end

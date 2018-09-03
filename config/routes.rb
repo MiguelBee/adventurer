@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'gravatars/create'
-
   devise_for :users, path: 'users', controllers: {
   	sessions: "users/sessions",
   	registrations: "users/registrations",
@@ -11,7 +9,7 @@ Rails.application.routes.draw do
   root "static_pages#index"
 
   resources :users, only: :show do
-    resources :avatars, only: :create
+    resources :avatars, only: [:create, :destroy]
   end
 
   get '/contact', to: 'static_pages#contact' 

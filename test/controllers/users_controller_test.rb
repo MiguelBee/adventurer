@@ -18,9 +18,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 							password_confirmation: user.password_confirmation
 						}
 		}
-		follow_redirect!
-		#assert_redirected_to user_path(user)
-		assert response.body.include?(users(:miguel).email)
+		assert_response :success
+		assert response.body.include?(user.full_name)
 	end
 
 	test "will not save with missing info" do
@@ -37,7 +36,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   	user = FactoryBot.create(:user)
     get user_path(user)
     assert_response :success
-    assert response.body.include?(user.email)
+    assert response.body.include?(user.first_name)
   end
 
   test "will update user" do
@@ -45,10 +44,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   	sign_in user
   	patch user_registration_path, params: {
   						user:{
-  							quote: "this is a test quote"
+  							first_name: user.first_name, last_name: user.last_name,
+  							birthday: user.birthday,
+  							quote: "this is a test quote",
+  							current_password: user.password
   						}
   	}
-  	assert_response :success
   	assert_equal "this is a test quote", user.quote
   end
 end

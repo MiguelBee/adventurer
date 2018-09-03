@@ -3,4 +3,5 @@ class UsersController < ApplicationController
   	@current_user = User.find(params[:id])
   	@avatar = Avatar.new
   end
+
 end

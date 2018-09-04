@@ -4,5 +4,5 @@ class AddTableAvatars < ActiveRecord::Migration[5.1]
   #		t.string :picture
   #		t.timestamps
   #	end
-  end
+  #end
 end

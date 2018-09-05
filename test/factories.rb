@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :avatar do
+  factory :adventure do
     
   end
 	factory :user do

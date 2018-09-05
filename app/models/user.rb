@@ -6,6 +6,7 @@ class User < ApplicationRecord
   validates :first_name, :last_name, :birthday, :quote, presence: true
   validates :email, uniqueness: { case_sensitive: false}
   has_many :avatars
+  has_many :adventures
   before_save :downcase_email
   before_save :capitalize_name
 

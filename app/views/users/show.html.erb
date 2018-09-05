@@ -2,15 +2,13 @@
 	<div class="row">
 		<div class="user_info col-sm-4 float-left">
 			<% if @current_user.avatars.any? %>
-				<div class="profile-pic">
-					<% @current_user.avatars.each do |avatar| %>
-						<%= image_tag avatar.picture %>
-					<% end %>
-				</div>
-				
+				<% @current_user.avatars.each do |avatar| %>
+					<%= image_tag avatar.picture %><br />
+					<%= link_to "Delete picture", user_avatar_path(@current_user, avatar), method: :delete,class:"btn btn-primary" %>
+				<% end %>
 			<% else %>
-				<!-- Button trigger modal -->
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+				<!-- Picture button trigger modal -->
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#avatarModal">
 				  Upload Profile Picture
 				</button>
 			<% end %>
@@ -37,8 +35,26 @@
 </div>
 <br>
 <hr>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="row">
+	<h2 class="float-left col-sm-12 col-md-6 offset-1">Adventures</h2>
+	<button type="button" class="fa fa-plus-circle float-right col-sm-12 col-md-4 offset-1" data-toggle="modal" data-target="#adventureModal">
+  	New Adventure
+	</button>
+</div>
+<br />
+	<% if @current_user.adventures.any? %>
+		<% @current_user.adventures.each do |adventure| %>
+			<%= link_to adventure.title, user_adventure_path(@current_user, adventure) %>
+			<%= adventure.description %>
+			<%= adventure.duration %>
+			<hr>
+		<% end %>
+	<% else %>
+		<h3> No Adventures Yet</h3>
+	<% end %>
+
+<!-- Avatar Modal -->
+<div class="modal fade" id="avatarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -48,6 +64,21 @@
         </button>
       </div>
         <%= render 'avatars/new' %> 
+    </div>
+  </div>
+</div>
+
+<!-- Adventure Modal -->
+<div class="modal fade" id="adventureModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Adventure</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <%= render 'adventures/new' %> 
     </div>
   </div>
 </div>

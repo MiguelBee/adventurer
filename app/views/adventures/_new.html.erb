@@ -1,0 +1,11 @@
+<%= simple_form_for @adventure, url: user_adventures_path(@current_user) do |f| %>  
+  <div class="modal-body">
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%#= f.input :duration %>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <%= f.submit "Create Your Adventure", class: 'btn btn-primary' %>
+  </div>
+<% end %>

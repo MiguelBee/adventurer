@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
+  
   def show
-  	@current_user = User.find(params[:id])
-  	@avatar = Avatar.new
+  	@user = User.find(params[:id])
   	@adventure = Adventure.new
+  	@avatar = Avatar.new
   end
 
 end

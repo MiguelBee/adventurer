@@ -1,4 +1,4 @@
-<%= simple_form_for @avatar, url: user_avatars_path(@current_user) do |f| %>  
+<%= simple_form_for @avatar, url: user_avatars_path(@user) do |f| %>  
   <div class="modal-body">
     <%= f.input :picture %>
   </div>

@@ -1,15 +1,18 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
+
 	test "Get new user form" do
 		get new_user_registration_path
-		assert_select ('div.field input'), 9
+		assert_select ('div.field input'), 10
 	end
 
 	test "create new user" do
 		user = FactoryBot.create(:user)
 		post user_registration_path, params: {
 						user: {
+							username: user.username,
+							about: user.about,
 							email: user.email,
 							first_name: user.first_name, last_name: user.last_name,
 							birthday: user.birthday,
@@ -34,6 +37,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should get show" do
   	user = FactoryBot.create(:user)
+  	sign_in user
     get user_path(user)
     assert_response :success
     assert response.body.include?(user.first_name)
@@ -44,8 +48,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   	sign_in user
   	patch user_registration_path, params: {
   						user:{
-  							first_name: user.first_name, last_name: user.last_name,
+  							username: user.username,
+  							first_name: user.first_name,
+  							last_name: user.last_name,
   							birthday: user.birthday,
+  							about: user.about,
   							quote: "this is a test quote",
   							current_password: user.password
   						}

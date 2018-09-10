@@ -1,13 +1,13 @@
 class AvatarsController < ApplicationController
-
+	before_action :authenticate_user!
+	
 	def create
-		@user = User.find(params[:user_id])
-		@user.avatars.create(avatar_params)
-		redirect_to user_path(@user)
+		@avatar = current_user.avatars.create(avatar_params)
+		redirect_to user_path(current_user)
 	end
 
 	def destroy
-		@avatar = Avatar.includes(:user).find(params[:id]).destroy
+		@avatar = Avatar.find(params[:id]).destroy
 		redirect_to user_path(current_user)
 	end
 

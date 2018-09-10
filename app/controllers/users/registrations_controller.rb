@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  include Accessible
+  skip_before_action :check_user, only: [:edit, :update, :destroy]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -10,24 +12,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  def create
-    @user = User.create(user_params)
-    if @user.save
-      redirect_to user_path(@user)
-    else
-      render :new
-    end
-  end
+  #def create
+  #  @user = User.create(user_params)
+  #  redirect_to user_path(@user)
+  #end
 
   # GET /resource/edit
-  def edit
-    super
-  end
+  #def edit
+  #  super
+  #end
 
   # PUT /resource
-  def update
-    super
-  end
+  #def update
+  #  super
+  #end
 
   # DELETE /resource
   # def destroy
@@ -47,8 +45,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   
-  def user_params
-    params.require(:user).permit(:first_name, :last_name, :quote, :birthday, :email, :password, :password_confirmation)
+  def sign_up_params
+    params.require(:user).permit(:first_name, :last_name, :quote, :birthday, :email, :about, :username, :password, :password_confirmation)
+  end
+
+  def account_update_params
+    params.require(:user).permit(:first_name, :last_name, :quote, :birthday, :email, :about, :username, :password, :password_confirmation)
   end
 
   # def configure_sign_up_params
@@ -61,9 +63,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
-  def after_sign_up_path_for(resource)
-    user_path(resource)
-  end
+  #def after_sign_up_path_for(resource)
+  #  user_path(resource)
+  #end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)

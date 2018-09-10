@@ -1,4 +1,4 @@
-<%= simple_form_for @adventure do |f| %>  
+<%= simple_form_for @adventure, method: :patch do |f| %>  
   <div class="modal-body">
     <%= f.input :title %>
     <%= f.input :description %>
@@ -7,6 +7,6 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    <%= f.submit "Create Your Adventure", class: 'btn btn-primary' %>
+    <%= f.submit "Save Changes", class: 'btn btn-primary' %>
   </div>
 <% end %>

@@ -1,24 +1,31 @@
 <div class="container-fluid">	
 	<div class="row">
 		<div class="user_info col-sm-4 float-left">
-			<% if @current_user.avatars.any? %>
-				<% @current_user.avatars.each do |avatar| %>
-					<%= image_tag avatar.picture %><br />
-					<%= link_to "Delete picture", user_avatar_path(@current_user, avatar), method: :delete,class:"btn btn-primary" %>
+			<% if @user.avatars.any? %>
+				<% @user.avatars.each do |avatar| %>
+						<%= image_tag avatar.picture %>
+					<div class="clear"></div>
+					<br />
+					<% if profile_owner? %>
+						<%= link_to "Delete picture", user_avatar_path(current_user, avatar), method: :delete, class:"btn btn-primary" %>
+					<% end %>
 				<% end %>
-			<% else %>
-				<!-- Picture button trigger modal -->
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#avatarModal">
-				  Upload Profile Picture
-				</button>
+				<% else%>
+					<% if profile_owner? %>
+						<!-- Picture button trigger modal -->
+						<%= link_to "Upload Picture", "#", data: { toggle: "modal", target: "#avatarModal"}, class:"btn btn-primary" %>
+					<% end %>
 			<% end %>
 			
-
-			<h1><%= @current_user.first_name %></h1>
-			<h1><%= @current_user.last_name %></h1>
-			<h2>Age: <%= @current_user.age %></h2>
-			<h3>Quote:<i>"<%= @current_user.quote %>"</i></h3>
-			<%= link_to "Update Information", edit_user_registration_path, class: "update_user_btn btn btn-primary" %>
+			<h1>@<%= @user.username %></h1>
+			<h1><%= @user.first_name %></h1>
+			<h1><%= @user.last_name %></h1>
+			<h2>Age: <%= @user.age %></h2>
+			<h2>About: <%= @user.about %></h2>
+			<h3>Quote:<i>"<%= @user.quote %>"</i></h3>
+			<% if profile_owner? %>
+				<%= link_to "Update Information", edit_user_registration_path, class: "update_user_btn btn btn-primary" %>
+			<% end %>
 		</div>
 		<div class="clear"></div>
 		<div class="user_social_media col-sm-6 float-right">
@@ -36,17 +43,18 @@
 <br>
 <hr>
 <div class="row">
-	<h2 class="float-left col-sm-12 col-md-6 offset-1">Adventures</h2>
-	<button type="button" class="fa fa-plus-circle float-right col-sm-12 col-md-4 offset-1" data-toggle="modal" data-target="#adventureModal">
-  	New Adventure
-	</button>
+	<h2 class="col-8">Adventures</h2>
+	<% if profile_owner? %>
+		<%= link_to "Add Adventure", "#", data: {toggle: "modal", target: "#adventureModal"}, class: "fa fa-plus-circle col-4" %>
+	<% end %>
 </div>
 <br />
-	<% if @current_user.adventures.any? %>
-		<% @current_user.adventures.each do |adventure| %>
-			<%= link_to adventure.title, user_adventure_path(@current_user, adventure) %>
-			<%= adventure.description %>
-			<%= adventure.duration %>
+	<% if @user.adventures.any? %>
+		<% @user.adventures.each do |adventure| %>
+			<h4><%= link_to adventure.title, adventure_path(adventure) %>
+			<%= "(#{adventure.str_date.strftime('%D')}-#{adventure.end_date.strftime('%D')})" %></h4>
+			&nbsp; 
+			<p><%= adventure.description %></p>
 			<hr>
 		<% end %>
 	<% else %>

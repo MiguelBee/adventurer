@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :email, :username, uniqueness: { case_sensitive: false}
   has_many :avatars, dependent: :destroy
   has_many :adventures, dependent: :destroy
+  has_many :posts, dependent: :destroy
   before_save :downcase_email
   before_save :capitalize_name
   before_save :downcase_username

@@ -1,0 +1,13 @@
+<%= simple_form_for Post.travel_picture.new, url: adventure_create_travel_picture_path(@adventure) do |f| %>  
+  <div class="modal-body">
+  	<%= f.input :title %>
+  	<%= f.input :date %>
+    <%= f.hidden_field :post_type, value: "TravelPicture" %>
+    <%= f.input :picture %>
+    <%= f.input :caption %>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <%= f.submit "Upload Picture", class: 'btn btn-primary' %>
+  </div>
+<% end %>

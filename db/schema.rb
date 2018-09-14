@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180906040508) do
+ActiveRecord::Schema.define(version: 20180911042847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,13 +23,30 @@ ActiveRecord::Schema.define(version: 20180906040508) do
     t.datetime "updated_at", null: false
     t.datetime "str_date"
     t.datetime "end_date"
+    t.index ["user_id"], name: "index_adventures_on_user_id"
   end
 
   create_table "avatars", force: :cascade do |t|
-    t.integer "user_id"
     t.string "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer "adventure_id"
+    t.integer "user_id"
+    t.string "title"
+    t.datetime "date"
+    t.string "picture"
+    t.string "caption"
+    t.string "video"
+    t.text "travel_log"
+    t.string "post_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["adventure_id"], name: "index_posts_on_adventure_id"
+    t.index ["user_id", "adventure_id"], name: "index_posts_on_user_id_and_adventure_id"
   end
 
   create_table "users", force: :cascade do |t|

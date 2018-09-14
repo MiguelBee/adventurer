@@ -7,5 +7,5 @@ module ApplicationHelper
 	def adventure_owner?
 		current_user == @adventure.user
 	end
-
+	
 end

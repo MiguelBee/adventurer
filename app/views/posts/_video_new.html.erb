@@ -1,0 +1,12 @@
+<%= simple_form_for Post.travel_video.new, url: adventure_create_travel_video_path(@adventure) do |f| %>  
+  <div class="modal-body">
+  	<%= f.input :title %>
+  	<%= f.input :date %>
+  	<%= f.hidden_field :post_type, value: "TravelVideo" %>
+    <%= f.input :video %>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <%= f.submit "Upload Video", class: 'btn btn-primary' %>
+  </div>
+<% end %>

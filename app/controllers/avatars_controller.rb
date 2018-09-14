@@ -3,7 +3,13 @@ class AvatarsController < ApplicationController
 	
 	def create
 		@avatar = current_user.avatars.create(avatar_params)
-		redirect_to user_path(current_user)
+		if @avatar.valid?
+			@avatar.save
+			redirect_to user_path(current_user)
+		else
+			render "new"
+			flash[:notice] = "Invalid or missing file"
+		end
 	end
 
 	def destroy

@@ -1,0 +1,12 @@
+<%= simple_form_for Post.travel_log.new, url: adventure_create_travel_log_path(@adventure) do |f| %>  
+  <div class="modal-body">
+  	<%= f.input :title %>
+  	<%= f.input :date %>
+  	<%= f.hidden_field :post_type, value: "TravelLog" %>
+    <%= f.input :travel_log %>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <%= f.submit "Save Log", class: 'btn btn-primary' %>
+  </div>
+<% end %>

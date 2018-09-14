@@ -1,4 +1,7 @@
 FactoryBot.define do
+  factory :post do
+    
+  end
   factory :adventure do
     
   end

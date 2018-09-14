@@ -3,6 +3,7 @@ class AdventuresController < ApplicationController
 
 	def show
 		@adventure = Adventure.find(params[:id])
+		#@post = Post.new
 	end
 
 	def create
@@ -27,8 +28,8 @@ private
 		params.require(:adventure).permit(:title, :description, :str_date, :end_date)
 	end
 
-	def current_adventure
+	#def current_adventure
 
-	end
+	#end
 
 end

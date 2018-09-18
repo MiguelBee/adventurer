@@ -3,7 +3,11 @@ FactoryBot.define do
     
   end
   factory :adventure do
-    
+    title "This is the adventure we took"
+    description "We went to the hjmilayas"
+    str_date 1.year.ago
+  	end_date Date.today
+  	user_id 1
   end
 	factory :user do
 		sequence :email do |n|

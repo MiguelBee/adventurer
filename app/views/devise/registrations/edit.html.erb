@@ -11,6 +11,8 @@
                             end_year: Date.today.year - 18, order: [:month, :day, :year] %>
     <%= f.input :about, placeholder: "Write about yourself" %>
     <%= f.input :quote, as: :text %>
+    <%= f.label "What type of adventurer are you?" %>
+    <%= f.select :adventurer_type, options_for_select(adventurer_type) %>
     
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>

@@ -1,58 +1,73 @@
-<div class="header">
-	<% if adventure_owner? %>
-		<%= link_to "Delete Adventure", adventure_path(@adventure), method: :delete, data: {confirm: "Your adventure will be permanently deleted. Are you sure?"}, class: "btn btn-default" %>
-		<%= link_to "Edit Adventure", "#", data: {toggle: "modal", target: "#editModal"}, class: "btn btn-default" %>
-	<% end %>
-	<h1><%= @adventure.title %></h1>
-	<h3><%= @adventure.description %></h3>
-</div>
-<hr />
-<% if adventure_owner? %>
-	<%= link_to "Add Video", "#", data: {toggle: "modal", target: "#videoModal"}, class: "fa fa-plus-circle col-3" %>
-	<%= link_to "Add Picture", "#", data: {toggle: "modal", target: "#pictureModal"}, class: "fa fa-plus-circle col-3" %>
-	<%= link_to "Add Travel Log", "#", data: {toggle: "modal", target: "#logModal"}, class: "fa fa-plus-circle col-3" %>
-<% end %>
-<br />
-<% if @adventure.posts.any? %>
-<div class="row">
-	<div class="post col-3">
-		<% @adventure.posts.each do |post| %>
-			<%= post.title %>
-			<%= post.date %>
-			<br />
-			<% if post.post_type == "TravelPicture" %>
-				<%= image_tag post.picture %><br />
-				<%= post.caption %><br />
-        <%= (link_to "Delete Picture", adventure_post_path(@adventure, post), method: :delete) if adventure_owner? %>
-			<% elsif post.post_type == "TravelLog" %>
-				<%= post.travel_log %>
-        <%= (link_to "Delete Log", adventure_post_path(@adventure, post), method: :delete) if adventure_owner? %>
-			<% elsif post.post_type == "TravelVideo" %>
-				<%= post.video %>
-        <%= (link_to "Delete Video", adventure_post_path(@adventure, post), method: :delete) if adventure_owner? %>
-			<% end %>
-			<br />
-		<% end %>
-	</div>
-</div>
-
-<% end %>
-
-
-<!-- Adventure Edit Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit Adventure</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+<div class="container">
+  <div class="header">
+  	<% if adventure_owner? %>
+      <div class="row">
+        <div class="col-sm-12 col-md-6 float-left">
+      		<%= link_to "Delete Adventure", adventure_path(@adventure), method: :delete, data: {confirm: "Your adventure will be permanently deleted. Are you sure?"}, class: "btn btn-default" %>
+      		<%= link_to "Edit Adventure", "#", data: {toggle: "modal", target: "#editModal"}, class: "btn btn-default" %>
+        </div>
+        <div class="col-sm-12 col-md-6 float-right">
+          <%= link_to "Add Video", "#", data: {toggle: "modal", target: "#videoModal"}, class: "fa fa-plus-circle col-sm-4 col-md-2" %>
+          <%= link_to "Add Picture", "#", data: {toggle: "modal", target: "#pictureModal"}, class: "fa fa-plus-circle col-sm-4 col-md-2" %>
+          <%= link_to "Add Log", "#", data: {toggle: "modal", target: "#logModal"}, class: "fa fa-plus-circle col-sm-4 col-md-2" %>
+        </div>
       </div>
-        <%= render 'edit' %> 
+    <% end %>
+  	<h1><%= @adventure.title %></h1>
+  	<h3><%= @adventure.description %></h3>
+  </div>
+  <hr />
+  <br />
+  <% if @adventure.posts.any? %>
+  <div class="row">
+  	<% @adventure.posts.each do |post| %>
+      <div class="post col-3 float-left">
+  			<%= post.title %>
+  			<%= (post.date.strftime("%b %d, %Y")) %>
+        <br />
+  			<% if post.post_type == "TravelPicture" %>
+  				<%= image_tag post.picture %><br />
+  				<%= post.caption %><br />
+          <%= (link_to "Delete Picture", adventure_post_path(@adventure, post), method: :delete) if adventure_owner? %>
+  			<% elsif post.post_type == "TravelLog" %>
+  				<%= post.travel_log %>
+          <%= (link_to "Delete Log", adventure_post_path(@adventure, post), method: :delete) if adventure_owner? %>
+  			<% elsif post.post_type == "TravelVideo" %>
+          <video id="my-video" class="video-js vjs-big-play-centered vjs-fluid" controls preload="auto" width="200" height="200"
+            poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+              <source src="<%= post.video.to_s %>" type='video/mp4'>
+              <noscript>
+                <p class="vjs-no-js">
+                  To view this video please enable JavaScript, and consider upgrading to a web browser that
+                  <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                </p>
+              </noscript>
+          </video>
+          <%= (link_to "Delete Video", adventure_post_path(@adventure, post), method: :delete) if adventure_owner? %>
+  			<% end %>
+  			<br />
+      </div>
+      <div class="clear"></div>
+  	<% end %>
+  </div>
+  <% end %>
+</div>
+
+
+  <!-- Adventure Edit Modal -->
+  <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Adventure</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+          <%= render 'edit' %> 
+      </div>
     </div>
   </div>
-</div>
 
 <!-- Video Modal -->
 <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

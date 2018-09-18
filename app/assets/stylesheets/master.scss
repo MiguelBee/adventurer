@@ -2,7 +2,7 @@
 @import "font-awesome";
 
 body {
-	background-image: image_url("country-quilt-dark.png");
+  background: white;
 	padding-top: 65px;
 }
 
@@ -55,9 +55,21 @@ td {
 .user_info{
   background-color: white;
   color: black;
-  border: 5px solid blue;
+  border-right: 3px outset darkgrey;
+  h1{
+    color: black;
+  }
 }
 
-.user_info h1{
-  color: black;
+nav {
+  background-color: B15E18;
+}
+
+  .profile_picture {
+    border-radius: 100%;
+  }
+
+
+.post {
+  clear: both
 }

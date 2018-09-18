@@ -4,6 +4,7 @@
     <title>Adventurer</title>
     <%= csrf_meta_tags %>
 
+    <link href="http://vjs.zencdn.net/5.12.6/video-js.css" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -11,11 +12,8 @@
   <body>
 		<div class="row">
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
-		
 			<%= link_to "Adventurer", root_path, class: "navbar-brand"%>
-
 			<% if !user_signed_in? %>
-
 		    <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
 		            &#9776;
 		    </button>
@@ -27,6 +25,11 @@
 		            <li class="px-3 py-2">
 		              <%= render partial:'devise/sessions/new' %>
 		            </li>
+		            <hr />
+			           <div class="text-center px-3 py-2">
+				            <%= link_to "About Adventurer", about_path %><br />
+				            <%= link_to "Contact Us", contact_path %>
+		          	</div>
 		          </ul>
 		        </li>
 		      </ul>
@@ -48,6 +51,9 @@
 	<br class="clear">
 
   <%= yield %>
-  
+
+
+  <script src="https://vjs.zencdn.net/ie8/ie8-version/videojs-ie8.min.js"></script>
+  <script src="https://vjs.zencdn.net/7.1.0/video.js"></script>
   </body>
 </html>

@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
 	mount_uploader :picture, PictureUploader
+	mount_uploader :video, VideoUploader
 	belongs_to :user
 	belongs_to :adventure
 	validates :title, presence: true

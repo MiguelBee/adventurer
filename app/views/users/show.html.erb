@@ -1,66 +1,65 @@
 <div class="container-fluid">	
 	<div class="row">
-		<div class="user_info col-sm-4 float-left">
+		<div class="user_info col-sm-12 col-md-3 float-left">
 			<% if @user.avatars.any? %>
 				<% @user.avatars.each do |avatar| %>
+					<div class: "rounded">
 						<%= image_tag avatar.picture %>
+					</div>
 					<div class="clear"></div>
 					<br />
-					<% if profile_owner? %>
-						<%= link_to "Delete picture", user_avatar_path(current_user, avatar), method: :delete, class:"btn btn-primary" %>
-					<% end %>
+					<%= (link_to "Delete picture", user_avatar_path(current_user, avatar), method: :delete, class:"btn btn-primary") if profile_owner? %>
 				<% end %>
-				<% else%>
-					<% if profile_owner? %>
-						<!-- Picture button trigger modal -->
-						<%= link_to "Upload Picture", "#", data: { toggle: "modal", target: "#avatarModal"}, class:"btn btn-primary" %>
-					<% end %>
+			<% else%>
+				<%= (link_to "Upload Picture", "#", data: { toggle: "modal", target: "#avatarModal"}, class:"btn btn-primary") if profile_owner? %>
 			<% end %>
 			
-			<h1>@<%= @user.username %></h1>
-			<h1><%= @user.first_name %></h1>
-			<h1><%= @user.last_name %></h1>
-			<h2>Age: <%= @user.age %></h2>
-			<h2>About: <%= @user.about %></h2>
+			<h2>@<%= @user.username %></h2>
+			<h2><%= @user.first_name %></h2>
+			<h2><%= @user.last_name %></h2>
+			<h2><%= @user.adventurer_type %></h2>
+			<h3>Age: <%= @user.age %></h3>
+			<h3>About: <%= @user.about %></h3>
 			<h3>Quote:<i>"<%= @user.quote %>"</i></h3>
-			<% if profile_owner? %>
-				<%= link_to "Update Information", edit_user_registration_path, class: "update_user_btn btn btn-primary" %>
-			<% end %>
+			<div class="user_social_media">
+				<table>
+					<td>Facbook</td>
+					<div class="clear"></div>
+					<td>Instagram</td>
+					&nbsp; &nbsp;
+					<td>Twitter</td>
+					&nbsp; &nbsp;
+				</table>
+			</div>
+			<br />
+			<%= (link_to "Update Information", edit_user_registration_path, class: "update_user_btn btn btn-primary") if profile_owner? %>
 		</div>
+
 		<div class="clear"></div>
-		<div class="user_social_media col-sm-6 float-right">
-			<table>
-				<td>Facbook</td>
-				<div class="clear"></div>
-				<td>Instagram</td>
-				&nbsp; &nbsp;
-				<td>Twitter</td>
-				&nbsp; &nbsp;
-			</table>
+		<div class="col-sm-12 col-md-8">
+			<div class="row">
+				<div class="col-6">
+					<h2>Adventures</h2>
+				</div>
+				<div class="col-6">
+					<%= (link_to "Add Adventure", "#", data: {toggle: "modal", target: "#adventureModal"}, class: "fa fa-plus-circle col-4 float-right") if profile_owner? %>
+				</div>
+			</div>
+		<br />
+		<% if @user.adventures.any? %>
+			<% @user.adventures.each do |adventure| %>
+				<h4><%= link_to adventure.title, adventure_path(adventure) %>
+				<i><%="(#{adventure.str_date.strftime('%D')}-#{adventure.end_date.strftime('%D')})" %></i></h4>
+				&nbsp; 
+				<p><%= adventure.description %></p>
+			<hr>
+			<% end %>
+		<% else %>
+		<h3> No Adventures Yet</h3>
+		<% end %>
 		</div>
 	</div>
 </div>
-<br>
-<hr>
-<div class="row">
-	<h2 class="col-8">Adventures</h2>
-	<% if profile_owner? %>
-		<%= link_to "Add Adventure", "#", data: {toggle: "modal", target: "#adventureModal"}, class: "fa fa-plus-circle col-4" %>
-	<% end %>
-</div>
-<br />
-	<% if @user.adventures.any? %>
-		<% @user.adventures.each do |adventure| %>
-			<h4><%= link_to adventure.title, adventure_path(adventure) %>
-			<%= "(#{adventure.str_date.strftime('%D')}-#{adventure.end_date.strftime('%D')})" %></h4>
-			&nbsp; 
-			<p><%= adventure.description %></p>
-			<hr>
-		<% end %>
-	<% else %>
-		<h3> No Adventures Yet</h3>
-	<% end %>
-
 <!-- Avatar Modal -->
 <div class="modal fade" id="avatarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

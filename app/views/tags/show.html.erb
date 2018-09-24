@@ -1,0 +1,45 @@
+<div class="container">
+	<% if @adventures.tagged_with(params[:id]).present? %>
+		<h2> All Adventures tagged with "<%= params[:id] %>"</h2>
+		<hr />
+			<% @adventures.each do |adventure| %>
+				<h4><%= link_to adventure.title, adventure_path(adventure) %></h4>
+				<u>tags:</u> <%= adventure.tag_list %>
+				<hr />
+			<% end %>
+	<% elsif @posts.tagged_with(params[:id]).present? %>
+		<h2> All Posts tagged with "<%= params[:id] %>"</h2>
+		<hr />
+			<% @posts.each do |post| %>
+				<% case post.post_type %>
+				<% when "TravelVideo" %>
+					<h4><%= post.title%></h4>
+					<%= post.video %>
+				  <video id="my-video" class="video-js vjs-big-play-centered vjs-fluid" controls preload="auto" width="200" height="200"
+          poster="#" data-setup="{}">
+            <source src="<%= post.video.to_s %>" type='video/mp4'>
+            <noscript>
+              <p class="vjs-no-js">
+                To view this video please enable JavaScript, and consider upgrading to a web browser that
+                <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+              </p>
+            </noscript>
+          </video>
+          Adventure: <%= link_to post.adventure.title, adventure_path(post.adventure) %><br >
+					<u>tags:</u> <%= post.tag_list %>
+				<% when "TravelLog" %>
+					<h4><%= post.title %></h4>
+					<%= post.travel_log %><br>
+					Adventure: <%= link_to post.adventure.title, adventure_path(post.adventure) %>
+					<u>tags:</u> <%= post.tag_list %><br />
+				<% when "TravelPicture" %>
+					<h4><%= post.title %></h4>
+					<%= image_tag post.picture %><br >
+					Adventure: <%= link_to post.adventure.title, adventure_path(post.adventure) %><br >
+					<u>tags:</u> <%= post.tag_list %>
+				<% end %>
+				<hr />
+			<% end %>
+	<% end %>
+
+</div>

@@ -27,10 +27,10 @@ ActiveRecord::Schema.define(version: 20180918165628) do
   end
 
   create_table "avatars", force: :cascade do |t|
+    t.integer "user_id"
     t.string "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
   end
 
   create_table "posts", force: :cascade do |t|

@@ -25,4 +25,5 @@ Rails.application.routes.draw do
     post "travel_video", to: "posts#create_travel_video", as: "create_travel_video"
   end
 
+  resources :tags, only: :show
 end

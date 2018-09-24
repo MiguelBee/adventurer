@@ -1,9 +1,13 @@
-<%= simple_form_for Post.travel_log.new, url: adventure_create_travel_log_path(@adventure) do |f| %>  
+<%= simple_form_for @travel_log, url: adventure_create_travel_log_path(@adventure) do |f| %>  
   <div class="modal-body">
   	<%= f.input :title %>
   	<%= f.input :date, as: :date, label: "Date Of Event" %>
-  	<%= f.hidden_field :post_type, value: "TravelVideo" %>
+  	<%= f.hidden_field :post_type, value: "TravelLog" %>
     <%= f.input :travel_log %>
+    <p>
+      Tags(comma seperated):
+      <%= f.text_field :tag_list, placeholder: "optional" %>
+    </p>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -33,14 +33,14 @@ private
   end
 
   def picture_params
-    params.require(:post).permit(:title, :date, :picture, :caption, :post_type)
+    params.require(:travel_picture).permit(:title, :date, :picture, :caption, :post_type, :tag_list)
   end
 
   def video_params
-    params.require(:post).permit(:title, :date, :video, :post_type)
+    params.require(:travel_video).permit(:title, :date, :video, :post_type, :tag_list)
   end
 
   def log_params
-    params.require(:post).permit(:title, :date, :travel_log, :post_type)
+    params.require(:travel_log).permit(:title, :date, :travel_log, :post_type, :tag_list)
   end
 end

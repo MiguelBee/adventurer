@@ -1,9 +1,12 @@
 class AdventuresController < ApplicationController
-	before_action :authenticate_user!, only: :create
+	before_action :authenticate_user!, only: [:create, :destroy, :update]
 
 	def show
 		@adventure = Adventure.find(params[:id])
-		#@post = Post.new
+		@posts = @adventure.posts.order('id DESC')
+		@travel_log = TravelLog.new
+    @travel_picture = TravelPicture.new
+    @travel_video = TravelVideo.new
 	end
 
 	def create
@@ -25,11 +28,7 @@ class AdventuresController < ApplicationController
 private
 
 	def adventure_params
-		params.require(:adventure).permit(:title, :description, :str_date, :end_date)
+		params.require(:adventure).permit(:title, :description, :str_date, :end_date, :tag_list)
 	end
-
-	#def current_adventure
-
-	#end
 
 end

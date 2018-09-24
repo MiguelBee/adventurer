@@ -1,12 +1,9 @@
 class Adventure < ApplicationRecord
-belongs_to :user
-has_many :posts, dependent: :destroy
-validates :title, :description, presence: true
+	acts_as_taggable
+	belongs_to :user
+	has_many :posts, dependent: :destroy
+	validates :title, :description, presence: true
 
-delegate :travel_picture, :travel_video, :travel_log, to: :posts
-
-	#def to_param
-	#	"#{id}-#{title}"
-	#end
+	delegate :travel_picture, :travel_video, :travel_log, to: :posts
 
 end

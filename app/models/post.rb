@@ -1,13 +1,12 @@
 class Post < ApplicationRecord
-	mount_uploader :picture, PictureUploader
-	mount_uploader :video, VideoUploader
+	acts_as_taggable
 	belongs_to :user
 	belongs_to :adventure
 	validates :title, presence: true
 
-	#self.inheritance_column = :post_type
+	self.inheritance_column = :post_type
 
-	def self.types
+	def self.post_types
 		%w(TravelVideo TravelPicture TravelLog)
 	end
 

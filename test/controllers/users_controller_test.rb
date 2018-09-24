@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'date'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
 
@@ -8,27 +9,30 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 	end
 
 	test "create new user" do
-		user = FactoryBot.create(:user)
 		post user_registration_path, params: {
-						user: {
-							username: user.username,
-							about: user.about,
-							email: user.email,
-							first_name: user.first_name, last_name: user.last_name,
-							birthday: user.birthday,
-							quote: user.quote,
-							password: user.password,
-							password_confirmation: user.password_confirmation
-						}
+				user: {
+							username: "phatkid",
+							about: "this is about",
+							email: "fake@email.com",
+							first_name: "miguel",
+							last_name: "bustamante",
+							birthday: Date.today - 36,
+							adventurer_type: "Moto Trekker",
+							quote: "I die a little every dat",
+							password: "bustas",
+							password_confirmation: "bustas"
+					}
 		}
-		assert_response :success
-		assert response.body.include?(user.full_name)
+		user = User.last
+		assert_redirected_to user_path(user)
+		assert response.body.include?(user.first_name)
 	end
 
 	test "will not save with missing info" do
+		user = FactoryBot.create(:user)
 		post user_registration_path, params: {
 						user: {
-							email: users(:julie).email, first_name: users(:julie).first_name
+							email: user.email, first_name: user.first_name
 						}
 		}
 		assert_response :success
@@ -40,22 +44,16 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   	sign_in user
     get user_path(user)
     assert_response :success
-    assert response.body.include?(user.first_name)
+    assert response.body.include?(user.full_name)
   end
 
   test "will update user" do
   	user = FactoryBot.create(:user)
-  	sign_in user
   	patch user_registration_path, params: {
-  						user:{
-  							username: user.username,
-  							first_name: user.first_name,
-  							last_name: user.last_name,
-  							birthday: user.birthday,
-  							about: user.about,
+  					user: {
   							quote: "this is a test quote",
   							current_password: user.password
-  						}
+	  				}
   	}
   	assert_equal "this is a test quote", user.quote
   end

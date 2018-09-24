@@ -4,6 +4,10 @@
     <%= f.input :description %>
     <%= f.input :str_date, as: :date, label: "Start Date:", order: [:month, :day, :year] %>
     <%= f.input :end_date, as: :date, label: "End Date:", order: [:month, :day, :year] %>
+    <p>
+      Tags (comma seperated)
+      <%= f.text_field :tag_list, placeholder: "optional" %>
+    </p>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

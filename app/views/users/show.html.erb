@@ -3,9 +3,7 @@
 		<div class="user_info col-sm-12 col-md-3 float-left">
 			<% if @user.avatars.any? %>
 				<% @user.avatars.each do |avatar| %>
-					<div class: "rounded">
-						<%= image_tag avatar.picture %>
-					</div>
+					<%= image_tag avatar.picture, class: "rounded-circle" %>
 					<div class="clear"></div>
 					<br />
 					<%= (link_to "Delete picture", user_avatar_path(current_user, avatar), method: :delete, class:"btn btn-primary") if profile_owner? %>
@@ -46,11 +44,10 @@
 				</div>
 			</div>
 		<br />
-		<% if @user.adventures.any? %>
-			<% @user.adventures.each do |adventure| %>
+		<% if @adventures.any? %>
+			<% @adventures.each do |adventure| %>
 				<h4><%= link_to adventure.title, adventure_path(adventure) %>
 				<i><%="(#{adventure.str_date.strftime('%D')}-#{adventure.end_date.strftime('%D')})" %></i></h4>
-				&nbsp; 
 				<p><%= adventure.description %></p>
 			<hr>
 			<% end %>

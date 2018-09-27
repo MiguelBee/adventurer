@@ -7,8 +7,8 @@ class AvatarsController < ApplicationController
 			@avatar.save
 			redirect_to user_path(current_user)
 		else
-			render "new"
-			flash[:notice] = "Invalid or missing file"
+			redirect_to user_path(current_user)
+			flash[:notice] = "Invalid or missing file. Picture did not save."
 		end
 	end
 

@@ -1,0 +1,6 @@
+$('#vote_score').html("<h4><%= @adventure.votes.size %> Votes</h4>")
+$('#vote_score').css({backgroundColor: '#fffcc'});
+
+setTimeout(function(){
+	$("#vote_score").css({backgroundColor: '#ffffff'});	
+}, 2000);

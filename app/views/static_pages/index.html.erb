@@ -1,6 +1,28 @@
-<div class="container">
-	<%= image_tag("backpacker.jpg") %>
-	<%= image_tag("boater.jpg") %>
-	<%= image_tag("mototrekker.jpg") %>
-	<%= image_tag("rver.jpg") %>
+<div class="container-fluid text-center">
+	<div class="row">
+		<div class="adventurer_index_image col-md-2 col-sm-12 offset-1" >
+			<%= link_to backpackers_path do %>
+				<%= image_tag("backpacker.jpg") %><br>
+				Backpackers
+			<% end %>
+		</div>
+		<div class="adventurer_index_image col-md-2 col-sm-12 offset-1" >
+			<%= link_to boaters_path do %>
+				<%= image_tag("boater.jpg") %><br >
+				Boaters
+			<% end %>
+		</div>
+		<div class="adventurer_index_image col-md-2 col-sm-12 offset-1" >
+			<%= link_to moto_trekkers_path do %>
+				<%= image_tag("mototrekker.jpg") %><br>
+				Moto Trekkers
+			<% end %>
+		</div>
+		<div class="adventurer_index_image col-md-2 col-sm-12 offset-1" >
+			<%= link_to road_trippers_rvers_path do %>
+				<%= image_tag("rver.jpg") %><br>
+				Roadtrippers/RVers
+			<% end %>
+		</div>
+	</div>
 </div>

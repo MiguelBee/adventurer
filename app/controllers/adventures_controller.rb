@@ -7,6 +7,7 @@ class AdventuresController < ApplicationController
 		@travel_log = TravelLog.new
     @travel_picture = TravelPicture.new
     @travel_video = TravelVideo.new
+    @vote = Vote.new
 	end
 
 	def create

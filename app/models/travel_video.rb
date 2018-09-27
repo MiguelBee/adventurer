@@ -1,3 +1,3 @@
-class TravelVideo < Post;
-mount_uploader :video, VideoUploader	
+class TravelVideo < Post
+	mount_uploader :video, VideoUploader	
 end

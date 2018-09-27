@@ -16,6 +16,16 @@
     <% end %>
   	<h1><%= @adventure.title %></h1>
   	<h3><%= @adventure.description %></h3>
+    <div class="row">
+      <span id="vote_form">
+        <%= form_tag adventure_votes_path(@adventure) do %>
+          <%= submit_tag "Vote!",  class: "btn btn-primary" %> &nbsp;
+        <% end %>
+      </span>
+      <span id="vote_score"> 
+        <h4><%= @adventure.votes.count %> Votes</h4>
+      </span>
+    </div>
     <% unless @adventure.tag_list.empty? %>
       <p class="tags">
         <strong>Tags:</strong>
@@ -24,32 +34,34 @@
     <% end %>
   </div>
   <hr />
-  <br />
   <% if @posts.any? %>
   <div class="row">
   	<% @posts.each do |post| %>
       <div class="post col-3 float-left">
   			<%= post.title %>
-  			<%= (post.date.strftime("%b %d, %Y")) %>
+  			(<%= post.date.strftime("%b %d, %Y") %>)
         <br />
   			<% if post.post_type == "TravelPicture" %>
   				<%= image_tag post.picture %><br />
   				<%= post.caption %><br />
+          <%#= render 'post_vote', post: post %>
           <%= (link_to "Delete Picture", adventure_post_path(@adventure, post), method: :delete) if adventure_owner? %>
   			<% elsif post.post_type == "TravelLog" %>
   				<%= post.travel_log %><br />
+          <%#= render 'post_vote', post: post %>
           <%= (link_to "Delete Log", adventure_post_path(@adventure, post), method: :delete) if adventure_owner? %>
   			<% elsif post.post_type == "TravelVideo" %>
-          <video id="my-video" class="video-js vjs-big-play-centered vjs-fluid" controls preload="auto" width="200" height="200"
-            poster="#" data-setup="{}">
-              <source src="<%= post.video.to_s %>" type='video/mp4'>
-              <noscript>
-                <p class="vjs-no-js">
-                  To view this video please enable JavaScript, and consider upgrading to a web browser that
-                  <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-                </p>
-              </noscript>
+          <video id="my-video" class="video-js vjs-big-play-centered vjs-fluid" controls preload="auto" poster="#" data-setup="{}">
+            <source src="<%= post.video.to_s %>" type='video/mp4'>
+            <noscript>
+              <p class="vjs-no-js">
+                To view this video please enable JavaScript, and consider upgrading to a web browser that
+                <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+              </p>
+            </noscript>
           </video>
+          <br />
+          <%#= render 'post_vote', post: post %>
           <%= (link_to "Delete Video", adventure_post_path(@adventure, post), method: :delete) if adventure_owner? %>
   			<% end %>
         <% unless post.tag_list.empty? %>

@@ -1,6 +1,6 @@
 <div class="container-fluid">	
 	<div class="row">
-		<div class="user_info col-sm-12 col-md-3 float-left">
+		<div class="user_info col-sm-12 col-md-3 text-center">
 			<% if @user.avatars.any? %>
 				<% @user.avatars.each do |avatar| %>
 					<%= image_tag avatar.picture, class: "rounded-circle" %>
@@ -46,8 +46,9 @@
 		<br />
 		<% if @adventures.any? %>
 			<% @adventures.each do |adventure| %>
-				<h4><%= link_to adventure.title, adventure_path(adventure) %>
+				<h4><%= link_to adventure.title, adventure %>
 				<i><%="(#{adventure.str_date.strftime('%D')}-#{adventure.end_date.strftime('%D')})" %></i></h4>
+				<%= adventure.votes.count %> Votes
 				<p><%= adventure.description %></p>
 			<hr>
 			<% end %>
@@ -67,7 +68,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-        <%= render 'avatars/new' %> 
+        <%= render 'avatars/new', user: @user %> 
     </div>
   </div>
 </div>

@@ -3,16 +3,18 @@
   <head>
     <title>Adventurer</title>
     <%= csrf_meta_tags %>
-
-    <link href="http://vjs.zencdn.net/5.12.6/video-js.css" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="http://vjs.zencdn.net/5.12.6/video-js.css" rel="stylesheet">
   </head>
-  
+
   <body>
 		<div class="row">
 			<nav class="navbar navbar-expand-lg fixed-top" role="navigation">
-			<%= link_to "Adventurer", root_path, class: "navbar-brand"%>
+			<%= link_to root_path, class: "navbar-brand" do %>
+				<%= image_tag("tentnavbar.png") %>
+				Adventurer
+			<% end %>
 			<% if !user_signed_in? %>
 		    <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
 		            &#9776;
@@ -53,7 +55,7 @@
   <%= yield %>
 
 
-  <script src="https://vjs.zencdn.net/ie8/ie8-version/videojs-ie8.min.js"></script>
-  <script src="https://vjs.zencdn.net/7.1.0/video.js"></script>
+    <script src="http://vjs.zencdn.net/5.12.6/video.js"></script>
+    <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
   </body>
 </html>

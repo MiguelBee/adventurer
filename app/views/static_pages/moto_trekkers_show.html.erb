@@ -1,0 +1,30 @@
+<div class="container-fluid">
+	<% unless @moto_trekkers.any? %>
+		<h1>There aren't any Moto Trekkers yet</h1>
+	<% else %>
+		<h2 class="text-center">Moto Trekkers</h2>
+		<br>
+		<h5 class="adventurer_show_username float-left">Users</h5>
+		<h5 class="adventurer_show_about text-center"> Description</h5>
+		<div class="clear"></div>
+		<hr />
+
+		<% @moto_trekkers.each do |moto| %>
+		<div class="row">
+			<div class="col-4">
+				<%= link_to user_path(moto) do %>
+				<div class="row">
+					<%= image_tag(moto.avatars.last.picture, class: 'adventurers_show_image') if moto.avatars.any? %>
+					<div class="clear"></div>
+					<h5>@<%= moto.username %></h5>
+				</div>
+				<% end %>
+			</div>
+			<div class="col-8">
+				<p><%= moto.about %></p>
+			</div>
+		</div>
+		<hr />
+		<% end %>
+	<% end %>
+</div>

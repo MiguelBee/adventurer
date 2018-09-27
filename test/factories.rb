@@ -1,6 +1,12 @@
 require 'date'
 
 FactoryBot.define do
+  factory :subscription do
+    user_id 1
+  end
+  factory :vote do
+    
+  end
 
   factory :adventure do
     title {"This is the adventure we took"}

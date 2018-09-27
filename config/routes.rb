@@ -8,14 +8,25 @@ Rails.application.routes.draw do
   }
 
   root "static_pages#index"
-  get '/contact', to: 'static_pages#contact' 
+  get '/contact', to: 'static_pages#contact'
   get '/about', to: 'static_pages#about'
+  get '/moto_trekkers', to: 'static_pages#moto_trekkers_show'
+  get '/boaters', to: 'static_pages#boaters_show'
+  get '/backpackers', to: 'static_pages#backpackers_show'
+  get '/road-trippers-rvers', to: 'static_pages#rvers_show'
+  get '/bicylers', to: 'static_pages#bicyclers_show'
 
   resources :users, only: :show do
     resources :avatars, only: [:create, :destroy]
   end
+
+  #resources :posts, only: [] do
+  #  resources :votes, only: [:create, :destroy], as: 'create_post_vote' 
+  #end
   
   resources :adventures do
+    #post "adventure_vote", to: "votes#create_adventure_vote", as: "create_adventure_vote"
+    resources :votes, only: :create
     resources :posts, only: :destroy
     get "travel_picture/:id", to: "posts#travel_picture", as: "travel_picture"
     post "travel_picture", to: "posts#create_travel_picture", as: "create_travel_picture"

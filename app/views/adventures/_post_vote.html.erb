@@ -1,0 +1,10 @@
+<div class="row">
+  <span id="post_vote_form">
+    <%= form_tag post_create_post_vote_path(post), remote: true do %>
+      <%= submit_tag "Vote!" %> &nbsp;
+    <% end %>
+  </span>
+  <span id="post_vote_score"> 
+    <h4><%= post.votes.count %> Votes</h4>
+  </span>
+</div>

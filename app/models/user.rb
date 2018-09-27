@@ -5,12 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :first_name, :last_name, :birthday, :quote, :about, :username, :email, :adventurer_type, presence: true
   validates :email, :username, uniqueness: { case_sensitive: false}
+  validates :password, length: {minimum: 6}
   has_many :avatars, dependent: :destroy
   has_many :adventures, dependent: :destroy
   has_many :posts, dependent: :destroy
-  before_save :downcase_email
-  before_save :capitalize_name
-  before_save :downcase_username
+  before_create :downcase_email, :capitalize_name, :downcase_username
+
 
   def to_param
   	"#{id}-#{first_name}-#{last_name}"

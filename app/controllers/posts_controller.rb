@@ -11,8 +11,10 @@ class PostsController < ApplicationController
   end
 
   def create_travel_log
-    current_adventure.posts.create(log_params.merge(user: current_user))
-    redirect_to adventure_path(current_adventure)
+    @log = current_adventure.posts.create(log_params.merge(user: current_user))
+    if @log.save
+      redirect_to adventure_path(current_adventure)
+    end
   end
 
   def create_travel_video

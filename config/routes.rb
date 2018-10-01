@@ -20,13 +20,12 @@ Rails.application.routes.draw do
     resources :avatars, only: [:create, :destroy]
   end
 
-  #resources :posts, only: [] do
-  #  resources :votes, only: [:create, :destroy], as: 'create_post_vote' 
-  #end
+  resources :posts, only: [] do
+    resources :votes, only: :create, to: 'votes#create_vote' 
+  end
   
   resources :adventures do
-    #post "adventure_vote", to: "votes#create_adventure_vote", as: "create_adventure_vote"
-    resources :votes, only: :create
+    resources :votes, only: [:create, :destroy]
     resources :posts, only: :destroy
     get "travel_picture/:id", to: "posts#travel_picture", as: "travel_picture"
     post "travel_picture", to: "posts#create_travel_picture", as: "create_travel_picture"

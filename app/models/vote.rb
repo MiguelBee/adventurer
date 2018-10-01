@@ -1,4 +1,4 @@
 class Vote < ApplicationRecord
-	belongs_to :adventure
-	#belongs_to :post
+	belongs_to :adventure, optional: true
+	belongs_to :post, optional: true
 end

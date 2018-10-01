@@ -2,7 +2,7 @@ class Post < ApplicationRecord
 	acts_as_taggable
 	belongs_to :user
 	belongs_to :adventure
-	has_many :votes, dependent: :destroy
+	has_many :votes, dependent: :destroy	
 	validates :title, presence: true
 
 	self.inheritance_column = :post_type

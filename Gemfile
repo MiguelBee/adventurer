@@ -75,3 +75,5 @@ gem 'mini_magick'
 gem 'font-awesome-rails'
 
 gem 'acts-as-taggable-on', '~>6.0'
+
+gem 'trix'

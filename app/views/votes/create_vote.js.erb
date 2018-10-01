@@ -1,0 +1,6 @@
+$('#post_vote_score').html("<h4><%= @post.votes.size %> Votes</h4>")
+$('#post_vote_score').css({backgroundColor: '#fffcc'});
+
+setTimeout(function(){
+	$("#post_vote_score").css({backgroundColor: '#ffffff'});	
+}, 2000);

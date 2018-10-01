@@ -1,6 +1,6 @@
 <div class="container-fluid">	
 	<div class="row">
-		<div class="user_info col-sm-12 col-md-3 text-center">
+		<div class="box user_info col-sm-12 col-md-3 text-center">
 			<% if @user.avatars.any? %>
 				<% @user.avatars.each do |avatar| %>
 					<%= image_tag avatar.picture, class: "rounded-circle" %>
@@ -46,10 +46,10 @@
 		<br />
 		<% if @adventures.any? %>
 			<% @adventures.each do |adventure| %>
-				<h4><%= link_to adventure.title, adventure %>
+				<h4><u>Title:</u> <%= link_to adventure.title, adventure %>
 				<i><%="(#{adventure.str_date.strftime('%D')}-#{adventure.end_date.strftime('%D')})" %></i></h4>
+				<p><u>Description:</u> <%= adventure.description %></p>
 				<%= adventure.votes.count %> Votes
-				<p><%= adventure.description %></p>
 			<hr>
 			<% end %>
 		<% else %>

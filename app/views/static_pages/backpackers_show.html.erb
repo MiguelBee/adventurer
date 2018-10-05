@@ -16,7 +16,7 @@
 				<div class="row">
 					<%= image_tag(backpacker.avatars.last.picture, class: 'adventurers_show_image') if backpacker.avatars.any? %>
 					<div class="clear"></div>
-					<h5>@<%= backpacker.username %></h5>
+					<h5><%= backpacker.username %></h5>
 				</div>
 				<% end %>
 			</div>

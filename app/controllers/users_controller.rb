@@ -7,4 +7,12 @@ class UsersController < ApplicationController
   	@avatar = Avatar.new
   end
 
+private
+
+helper_method :current_avatar
+
+	def current_avatar
+		@user.avatars.empty? ? nil : @user.avatars.last.picture
+	end
+
 end

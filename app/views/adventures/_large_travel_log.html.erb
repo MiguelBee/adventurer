@@ -1,0 +1,16 @@
+<div class="modal fade float-left" id="postLog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content log_show_modal">
+      <div class="modal-body">
+      	<div id="log_body">
+      		<div id="margin">
+      			Title: <u><%= post.title %></u>
+      			<br/>
+      			Date: <u><%= post.date.strftime("%b %d, %Y") %></u>
+        	</div>
+        	<%= post.travel_log.html_safe %>
+      	</div>
+      </div>
+    </div>
+  </div>
+</div>

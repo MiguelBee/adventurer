@@ -1,0 +1,18 @@
+<div class="booyah-box col-10 offset-1">
+	<%= simple_form_for @log, url: adventure_update_log_path(@adventure, @log), method: :patch do |f| %>  
+	  <div class="modal-body">
+	    	<%= f.input :title %>
+	    	<%= f.input :date, as: :date, label: "Date Of Event" %>
+	    	<%= f.hidden_field :post_type, value: "TravelLog" %>
+	      <%= f.input :travel_log, as: :trix_editor %>
+	      <p>
+	        Optional: Tags(comma seperated):
+	        <%= f.text_field :tag_list, placeholder: "ex: tips, journal, India, ..etc." %>
+	      </p>
+	  </div>
+	  <div class="modal-footer">
+	    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	    <%= f.submit "Update Log", class: 'btn btn-primary' %>
+	  </div>
+	<% end %>
+</div>

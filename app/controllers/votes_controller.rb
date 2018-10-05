@@ -3,17 +3,13 @@ class VotesController < ApplicationController
 
   def create
 	  @adventure = Adventure.find(params[:adventure_id])
-		if !user_signed_in?
-			redirect_to adventure_path(@adventure)
-			flash[:notice] = "Must be logged-in to vote"
-		elsif
-			same_adventure_user?(@adventure)
+		if same_adventure_user?(@adventure)
   		redirect_to adventure_path(@adventure)
   		flash[:alert] = "You cannot vote on your own adventure"
 		else
 		@adventure.votes.create
   		respond_to do |format|
-	  		format.html {redirect_to adventure_path(@adventure), notice: "You voted on this story"}
+	  		format.html {redirect_to adventure_path(@adventure), flash[:notice] = "You voted on this story"}
 	  		format.js {}
 	  	end
   	end

@@ -1,27 +1,36 @@
 <div class="container-fluid text-center">
-	<div class="row">
-		<div class="adventurer_index_image col-md-2 col-sm-12 offset-1" >
+	<div class="row text-center">
+		<div class="adventurer_index_image rounded col-sm-12 col-md-2 offset-1 offloat-left" >
 			<%= link_to backpackers_path do %>
 				<%= image_tag("backpacker.jpg") %><br>
 				Backpackers
 			<% end %>
 		</div>
-		<div class="adventurer_index_image col-md-2 col-sm-12 offset-1" >
+		<div class="adventurer_index_image rounded col-sm-12 col-md-2 offset-1 float-left" >
 			<%= link_to boaters_path do %>
 				<%= image_tag("boater.jpg") %><br >
 				Boaters
 			<% end %>
 		</div>
-		<div class="adventurer_index_image col-md-2 col-sm-12 offset-1" >
+		<div class="adventurer_index_image rounded col-sm-12 col-md-2 offset-1 float-left" >
 			<%= link_to moto_trekkers_path do %>
 				<%= image_tag("mototrekker.jpg") %><br>
 				Moto Trekkers
 			<% end %>
 		</div>
-		<div class="adventurer_index_image col-md-2 col-sm-12 offset-1" >
+	</div>
+	<br class="clear"/>
+	<div class="row">
+		<div class="adventurer_index_image rounded col-sm-12 col-md-2 offset-1 float-left" >
 			<%= link_to road_trippers_rvers_path do %>
 				<%= image_tag("rver.jpg") %><br>
 				Roadtrippers/RVers
+			<% end %>
+		</div>
+		<div class="adventurer_index_image rounded col-sm-12 col-md-2 offset-1 float-left">
+			<%= link_to bicyclers_path do %>
+				<%= image_tag('bicycle.jpg') %><br />
+				Bicycle Adventurers
 			<% end %>
 		</div>
 	</div>

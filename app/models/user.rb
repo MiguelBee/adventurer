@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :avatars, dependent: :destroy
   has_many :adventures, dependent: :destroy
   has_many :posts, dependent: :destroy
-  before_create :downcase_email, :capitalize_name, :downcase_username
+  before_create :downcase_email, :capitalize_name, :downcase_username, :prepend_username
 
 
   def to_param
@@ -30,6 +30,10 @@ class User < ApplicationRecord
 
   def downcase_username
     username.downcase!
+  end
+
+  def prepend_username
+    username.prepend("@")
   end
 
   def capitalize_name

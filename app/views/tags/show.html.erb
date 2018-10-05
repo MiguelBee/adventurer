@@ -14,27 +14,24 @@
 				<% case post.post_type %>
 				<% when "TravelVideo" %>
 					<h4><%= post.title%></h4>
-					<%= post.video %>
-				  <video id="my-video" class="video-js vjs-big-play-centered vjs-fluid" controls preload="auto" width="200" height="200"
-          poster="#" data-setup="{}">
-            <source src="<%= post.video.to_s %>" type='video/mp4'>
-            <noscript>
-              <p class="vjs-no-js">
-                To view this video please enable JavaScript, and consider upgrading to a web browser that
-                <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-              </p>
-            </noscript>
-          </video>
+					<%= link_to video_tag(post.video, class: "post_thumbnail_size rounded"), "#", data: {toggle: 'modal', target: '#postVideo'} %>
+					<%= render 'adventures/large_video_player', post: post %>
+					<br />
           Adventure: <%= link_to post.adventure.title, adventure_path(post.adventure) %><br >
 					<u>tags:</u> <%= post.tag_list %>
 				<% when "TravelLog" %>
 					<h4><%= post.title %></h4>
-					<%= post.travel_log %><br>
+					<%= link_to image_tag('notebook.png', class: "post_thumbnail_size rounded"), "#", data: {toggle: 'modal', target: '#postLog'} %>
+					<%= render 'adventures/large_travel_log', post: post %>
+					<br />
 					Adventure: <%= link_to post.adventure.title, adventure_path(post.adventure) %>
+					<br />
 					<u>tags:</u> <%= post.tag_list %><br />
 				<% when "TravelPicture" %>
 					<h4><%= post.title %></h4>
-					<%= image_tag post.picture %><br >
+					<%= link_to image_tag(post.picture, class: "post_thumbnail_size rounded"), "#", data: {toggle: 'modal', target: '#postPhoto'} %>
+					<%= render 'adventures/large_post_photo', post: post %>
+					<br >
 					Adventure: <%= link_to post.adventure.title, adventure_path(post.adventure) %><br >
 					<u>tags:</u> <%= post.tag_list %>
 				<% end %>

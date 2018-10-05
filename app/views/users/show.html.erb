@@ -3,7 +3,7 @@
 		<div class="box user_info col-sm-12 col-md-3 text-center">
 			<% if @user.avatars.any? %>
 				<% @user.avatars.each do |avatar| %>
-					<%= image_tag avatar.picture, class: "rounded-circle" %>
+					<%= link_to image_tag(avatar.picture, class: "rounded-circle"), "#", data: {toggle: "modal", target: "#largeAvatar"} %>
 					<div class="clear"></div>
 					<br />
 					<%= (link_to "Delete picture", user_avatar_path(current_user, avatar), method: :delete, class:"btn btn-primary") if profile_owner? %>
@@ -12,7 +12,7 @@
 				<%= (link_to "Upload Picture", "#", data: { toggle: "modal", target: "#avatarModal"}, class:"btn btn-primary") if profile_owner? %>
 			<% end %>
 			
-			<h2>@<%= @user.username %></h2>
+			<h2><%= @user.username %></h2>
 			<h2><%= @user.first_name %></h2>
 			<h2><%= @user.last_name %></h2>
 			<h2><%= @user.adventurer_type %></h2>
@@ -58,7 +58,7 @@
 		</div>
 	</div>
 </div>
-<!-- Avatar Modal -->
+<!-- New Avatar Modal -->
 <div class="modal fade" id="avatarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -68,12 +68,12 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-        <%= render 'avatars/new', user: @user %> 
+        <%= render 'avatars/new' %> 
     </div>
   </div>
 </div>
 
-<!-- Adventure Modal -->
+<!-- New Adventure Modal -->
 <div class="modal fade" id="adventureModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -87,3 +87,20 @@
     </div>
   </div>
 </div>
+
+<!-- Avatar Show Modal -->
+<% if !current_avatar.nil? %>
+	<div class="modal fade" id="largeAvatar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="picture-modal-content">
+	        <button type="button" class="close float-right" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      <div class="modal-body">
+	        <%= image_tag current_avatar %>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+<% end %>
+

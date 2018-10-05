@@ -1,0 +1,17 @@
+<div class="modal fade" id="postVideo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content ">
+      <div class="modal-body video_show_modal">
+      <video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" poster="#" data-setup='{"playbackRates": [1, 1.5, 2]}'>
+        <source src="<%= post.video.to_s %>" type='video/mp4'>
+        <noscript>
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a web browser that
+            <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+        </noscript>
+      </video>
+      </div>
+    </div>
+  </div>
+</div>

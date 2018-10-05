@@ -17,6 +17,17 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit_log
+    @adventure = current_adventure
+    @log = current_adventure.posts.find(params[:id])
+  end
+
+  def update_log
+    @travel_log = current_adventure.posts.find(params[:id])
+    @travel_log.update_attributes(log_params)
+    redirect_to adventure_path(current_adventure)
+  end
+
   def create_travel_video
     current_adventure.posts.create(video_params.merge(user: current_user))
     redirect_to adventure_path(current_adventure)

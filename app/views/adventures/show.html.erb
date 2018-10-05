@@ -18,11 +18,11 @@
   	<h3><%= @adventure.description %></h3>
     <div class="row">
       <% if !user_signed_in? %>
-        <span class="vote"> Sign-in to Vote! </span> &nbsp;
+        &nbsp; &nbsp; <span class="vote"> Sign-in to Vote! </span> &nbsp;
       <% else %>
         <span id="adventure_vote_form">
           <%= form_tag adventure_votes_path(@adventure), remote: true do %>
-            <%= submit_tag "Vote!",  class: "btn btn-primary" %> &nbsp;
+            &nbsp; &nbsp; <%= submit_tag "Vote!",  class: "btn btn-primary" %> &nbsp;
           <% end %>
         </span>
       <% end %>
@@ -41,29 +41,30 @@
   <% if @posts.any? %>
   <div class="row">
   	<% @posts.each do |post| %>
-      <div class="post col-3 float-left">
+      <div class="post col-sm-6 col-md-3 float-left">
   			<%= post.title %>
   			(<%= post.date.strftime("%b %d, %Y") %>)
         <br />
   			<% if post.post_type == "TravelPicture" %>
-  				<%= image_tag post.picture %><br />
-  				<%= post.caption %><br />
+          <%= link_to image_tag(post.picture, class: "post_thumbnail_size rounded"), "#", data: {toggle: 'modal', target: '#postPhoto'} %>
+          <%= render 'large_post_photo', post: post %>
+          <br />
+  				<%= post.caption %>
+          <br />
           <%= render 'post_vote', post: post %>
           <%= (link_to "Delete Picture", adventure_post_path(@adventure, post), method: :delete) if adventure_owner? %>
   			<% elsif post.post_type == "TravelLog" %>
-  				<%= post.travel_log %><br />
+          <div id="logBackground">
+            <%= link_to image_tag('notebook.png', class: "post_thumbnail_size rounded"), "#", data: {toggle: 'modal', target: '#postLog'} %>
+  				</div>
+          <%= render 'large_travel_log', post: post %>
+          <br />
           <%= render 'post_vote', post: post %>
+          <%= link_to "Edit Log", adventure_edit_travel_log_path(@adventure, post) %>
           <%= (link_to "Delete Log", adventure_post_path(@adventure, post), method: :delete) if adventure_owner? %>
   			<% elsif post.post_type == "TravelVideo" %>
-          <video id="my-video" class="video-js vjs-big-play-centered vjs-fluid" controls preload="auto" poster="#" data-setup="{}">
-            <source src="<%= post.video.to_s %>" type='video/mp4'>
-            <noscript>
-              <p class="vjs-no-js">
-                To view this video please enable JavaScript, and consider upgrading to a web browser that
-                <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-              </p>
-            </noscript>
-          </video>
+          <%= link_to video_tag(post.video, class: 'post_thumbnail_size rounded'), "#", data: {toggle: 'modal', target: '#postVideo'} %>
+          <%= render 'large_video_player', post: post %>
           <br />
           <%= render 'post_vote', post: post %>
           <%= (link_to "Delete Video", adventure_post_path(@adventure, post), method: :delete) if adventure_owner? %>
@@ -98,7 +99,7 @@
     </div>
   </div>
 
-<!-- Video Modal -->
+<!-- New Video Modal -->
 <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -113,7 +114,7 @@
   </div>
 </div>
 
-<!-- Picture Modal -->
+<!-- New Picture Modal -->
 <div class="modal fade" id="pictureModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -128,10 +129,10 @@
   </div>
 </div>
 
-<!-- Log Modal -->
+<!-- New Log Modal -->
 <div class="modal fade" id="logModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="modal-content log-modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="logModal">Log Entry</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">

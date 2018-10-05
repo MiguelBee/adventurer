@@ -1,10 +1,10 @@
 <div class="row">
 	<% if !user_signed_in? %>
-		<span class="vote"> Sign-in to vote</span> &nbsp;
+		&nbsp; &nbsp; <span class="vote"> Sign-in to vote</span> &nbsp;
 	<% else %>
 	  <span id="post_vote_form">
 	    <%= form_tag post_votes_path(post), remote: true do %>
-	      <%= submit_tag "Vote!" %> &nbsp;
+	      &nbsp; &nbsp; <%= submit_tag "Vote!" %> &nbsp;
 	    <% end %>
 	  </span>
 	<% end %>

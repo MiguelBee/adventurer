@@ -4,11 +4,16 @@ class Post < ApplicationRecord
 	belongs_to :adventure
 	has_many :votes, dependent: :destroy	
 	validates :title, presence: true
+	before_save :capitalize_title
 
 	self.inheritance_column = :post_type
 
 	def self.post_types
 		%w(TravelVideo TravelPicture TravelLog)
+	end
+
+	def capitalize_title
+		title.capitalize!
 	end
 
 	scope :travel_video, -> {where(post_type: 'TravelVideo')}

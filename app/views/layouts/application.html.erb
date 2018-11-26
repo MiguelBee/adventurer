@@ -15,28 +15,7 @@
 				<%= image_tag("tentnavbar.png") %>
 				Adventurer
 			<% end %>
-			<% if !user_signed_in? %>
-		    <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
-		            &#9776;
-		    </button>
-		    <div class="collapse navbar-collapse" id="exCollapsingNavbar">
-		      <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
-		        <li class="dropdown order-1">
-		        <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Login <span class="caret"></span></button>
-		          <ul class="dropdown-menu dropdown-menu-right mt-2">
-		            <li class="px-3 py-2">
-		              <%= render partial:'devise/sessions/new' %>
-		            </li>
-		            <hr />
-			           <div class="text-center px-3 py-2">
-				            <%= link_to "About Adventurer", about_path %><br />
-				            <%= link_to "Contact Us", contact_path %>
-		          	</div>
-		          </ul>
-		        </li>
-		      </ul>
-		    </div>
-		 	<% else %>
+			<% if user_signed_in? %>
 		 		<%= link_to current_user.full_name, user_path(current_user), class: 'nav-link ml-auto'  %>
 		 		<%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'nav-link' %>
 		 	<% end %>

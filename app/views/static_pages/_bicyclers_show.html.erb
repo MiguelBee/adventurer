@@ -1,27 +1,27 @@
 <div class="container-fluid">
-	<% unless @drivers.any? %>
-		<h1>There aren't any roadtrippers/RV-ers yet</h1>
+	<% unless @bicyclers.any? %>
+		<h1>There aren't any Bicyclers yet</h1>
 	<% else %>
-		<h2 class="text-center">Roadtrippers/RV-ers</h2>
+		<h2 class="text-center">Bicyclers</h2>
 		<br>
 		<h5 class="adventurer_show_username float-left">Users</h5>
 		<h5 class="adventurer_show_about text-center"> Description</h5>
 		<div class="clear"></div>
 		<hr />
 
-		<% @drivers.each do |driver| %>
+		<% @bicyclers.each do |bicycler| %>
 		<div class="row">
 			<div class="col-4">
-				<%= link_to user_path(driver) do %>
+				<%= link_to user_path(bicycler) do %>
 				<div class="row">
-					<%= image_tag(driver.avatars.last.picture, class: 'adventurers_show_image') if driver.avatars.any? %>
+					<%= image_tag(bicycler.avatars.last.picture, class: 'adventurers_show_image') if bicycler.avatars.any? %>
 					<div class="clear"></div>
-					<h5><%= driver.username %></h5>
+					<h5><%= bicycler.username %></h5>
 				</div>
 				<% end %>
 			</div>
 			<div class="col-8">
-				<p><%= driver.about %></p>
+				<p><%= bicycler.about %></p>
 			</div>
 		</div>
 		<hr />

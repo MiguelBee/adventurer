@@ -10,12 +10,7 @@ Rails.application.routes.draw do
   root "static_pages#index"
   get '/contact', to: 'static_pages#contact'
   get '/about', to: 'static_pages#about'
-  get '/moto_trekkers', to: 'static_pages#moto_trekkers_show'
-  get '/boaters', to: 'static_pages#boaters_show'
-  get '/backpackers', to: 'static_pages#backpackers_show'
-  get '/road-trippers-rvers', to: 'static_pages#rvers_show'
-  get '/bicyclers', to: 'static_pages#bicyclers_show'
-
+  
   resources :users, only: :show do
     resources :avatars, only: [:create, :destroy]
   end

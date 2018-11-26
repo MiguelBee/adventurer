@@ -1,9 +1,9 @@
 # config/initializers/carrierwave.rb
 
 CarrierWave.configure do |config|
-	if Rails.env.development?
-		config.delete_tmp_file_after_storage = false
-	end
+	#if Rails.env.development?
+	#	config.delete_tmp_file_after_storage = false
+	#end
 	
 	config.storage    = :aws
   config.aws_bucket = ENV["AWS_BUCKET"]

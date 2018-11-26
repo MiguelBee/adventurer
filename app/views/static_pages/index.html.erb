@@ -1,37 +1,44 @@
-<div class="container-fluid text-center">
-	<div class="row text-center">
-		<div class="adventurer_index_image rounded col-sm-12 col-md-2 offset-1 offloat-left" >
-			<%= link_to backpackers_path do %>
-				<%= image_tag("backpacker.jpg") %><br>
-				Backpackers
-			<% end %>
+<% if !user_signed_in? %>
+	<div class="row hero">
+		<div class="frosty col-8 offset-1 text-center">
+			<h2> What's Your Adventure? </h2>
+			<br />
 		</div>
-		<div class="adventurer_index_image rounded col-sm-12 col-md-2 offset-1 float-left" >
-			<%= link_to boaters_path do %>
-				<%= image_tag("boater.jpg") %><br >
-				Boaters
-			<% end %>
-		</div>
-		<div class="adventurer_index_image rounded col-sm-12 col-md-2 offset-1 float-left" >
-			<%= link_to moto_trekkers_path do %>
-				<%= image_tag("mototrekker.jpg") %><br>
-				Moto Trekkers
-			<% end %>
+		<br />
+		<div class="home_sign_in col-md-2 col-sm-12 float-right">
+			<%= render 'devise/sessions/new' %>
 		</div>
 	</div>
-	<br class="clear"/>
-	<div class="row">
-		<div class="adventurer_index_image rounded col-sm-12 col-md-2 offset-1 float-left" >
-			<%= link_to road_trippers_rvers_path do %>
-				<%= image_tag("rver.jpg") %><br>
-				Roadtrippers/RVers
-			<% end %>
-		</div>
-		<div class="adventurer_index_image rounded col-sm-12 col-md-2 offset-1 float-left">
-			<%= link_to bicyclers_path do %>
-				<%= image_tag('bicycle.jpg') %><br />
-				Bicycle Adventurers
-			<% end %>
-		</div>
-	</div>
+<% end %>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Top Adventurers</a>
+  </li>
+   <li class="nav-item">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#adventures" role="tab" aria-controls="contact" aria-selected="false">Top Adventures</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#moto" role="tab" aria-controls="profile" aria-selected="false">Moto Trekkers</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#backpacker" role="tab" aria-controls="contact" aria-selected="false">Backpackers</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#rver" role="tab" aria-controls="contact" aria-selected="false">RVers/ Roadtrippers</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#boater" role="tab" aria-controls="contact" aria-selected="false">Boater</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#bicycle" role="tab" aria-controls="contact" aria-selected="false">Bicyclers</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">Top Adventurers</div>
+  <div class="tab-pane fade" id="adventures" role="tabpanel" aria-labelledby="profile-tab">Top Adventures</div>
+  <div class="tab-pane fade" id="moto" role="tabpanel" aria-labelledby="profile-tab"><%= render "static_pages/moto_trekkers_show" %></div>
+  <div class="tab-pane fade" id="backpacker" role="tabpanel" aria-labelledby="profile-tab"><%= render "static_pages/backpackers_show" %></div>
+  <div class="tab-pane fade" id="rver" role="tabpanel" aria-labelledby="profile-tab"><%= render "static_pages/rvers_show" %></div>
+	<div class="tab-pane fade" id="boater" role="tabpanel" aria-labelledby="profile-tab"><%= render "static_pages/boaters_show" %></div>
+	<div class="tab-pane fade" id="bicycle" role="tabpanel" aria-labelledby="profile-tab"><%= render "static_pages/bicyclers_show" %></div>
 </div>

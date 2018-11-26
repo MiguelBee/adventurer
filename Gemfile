@@ -10,7 +10,7 @@ gem 'rails', '~> 5.1.6'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+#gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -40,6 +40,10 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'factory_bot_rails', "~>4.0"
   gem 'pry-rails'
+end
+
+group :production do
+  gem 'puma', '~> 3.7'
 end
 
 group :development do

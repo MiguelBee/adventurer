@@ -1,23 +1,26 @@
 @import "bootstrap";
 @import "font-awesome";
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
 
-$navbar-color: #EE592E;
-$background-color: #F3CDA9;
+$navbar-color: #ff9681;
+$background-color: #eeeeee;
+$main-font: 'Amatic SC', cursive;
 
 body {
   background-color: white;
 	padding-top: 65px;
-  font-family: "Palatino Linotype", Palatino, Palladio, "URW Palladio L", "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow", "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L", Georgia, serif;
+  font-family: $main-font;
+  //font-size: 12px;
   margin: 0;
 }
 
 .hero {
-  background: image_url('hero2.jpg') no-repeat center fixed;
+  background: image_url('hero.jpg') no-repeat center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 650px;
+  height: 500px;
   width: 100%;
   margin: 0;
  }
@@ -29,11 +32,12 @@ body {
  }
 
  .home_sign_in {
-  margin-top: 10px;
+  margin: 10px;
+  height: auto;
   border: 1px solid dimgrey;
   background: rgba(0,0,0,0.5);
   color: white;
-  height: 400px;
+  height: 450px;
  }
 
  .booyah-box {

@@ -1,3 +1,2 @@
 class TravelLog < Post
-
 end

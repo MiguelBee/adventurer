@@ -4,7 +4,7 @@ class VideoUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  #storage :file
+  # storage :file
   # storage :fog
   storage :aws
 
@@ -14,9 +14,9 @@ class VideoUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  #def cache_dir
+  # def cache_dir
   #  "#{Rails.root}/tmp/uploads"
-  #end
+  # end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
@@ -28,7 +28,7 @@ class VideoUploader < CarrierWave::Uploader::Base
 
   # Process files as they are uploaded:
   # process scale: [200, 300]
-  
+
   #
   # def scale(width, height)
   #   # do something

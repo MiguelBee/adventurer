@@ -2,10 +2,10 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   include Accessible
-  skip_before_action :check_user, only: [:edit, :update, :destroy]
+  skip_before_action :check_user, only: %i[edit update destroy]
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
-  #after_action :redirect_to, only: :create
+  # after_action :redirect_to, only: :create
 
   # GET /resource/sign_up
   # def new
@@ -13,19 +13,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  #def create
+  # def create
   #  super
-  #end
+  # end
 
   # GET /resource/edit
-  #def edit
+  # def edit
   #  super
-  #end
+  # end
 
   # PUT /resource
-  #def update
+  # def update
   #  super
-  #end
+  # end
 
   # DELETE /resource
   # def destroy
@@ -46,12 +46,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
 
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :quote, :adventurer_type, :birthday, :username, :about])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name quote adventurer_type birthday username about])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :quote, :adventurer_type, :birthday, :username, :about])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[first_name last_name quote adventurer_type birthday username about])
   end
 
   # The path used after sign up.

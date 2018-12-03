@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
 
@@ -10,7 +10,7 @@ gem 'rails', '~> 5.1.6'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
-#gem 'puma', '~> 3.7'
+# gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -34,12 +34,13 @@ gem 'jbuilder', '~> 2.5'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
-  gem 'selenium-webdriver'
-  gem 'factory_bot_rails', "~>4.0"
+  gem 'factory_bot_rails', '~>4.0'
   gem 'pry-rails'
+  gem 'rubocop', '~> 0.60.0', require: false
+  gem 'selenium-webdriver'
 end
 
 group :production do
@@ -52,10 +53,10 @@ group :development do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 source 'https://rails-assets.org' do
-	gem 'rails-assets-tether', '>= 1.3.3'
+  gem 'rails-assets-tether', '>= 1.3.3'
 end
 
 gem 'popper_js', '~> 1.14.3'
@@ -81,3 +82,7 @@ gem 'font-awesome-rails'
 gem 'acts-as-taggable-on', '~>6.0'
 
 gem 'trix'
+
+gem 'will_paginate', '~> 3.1.0'
+
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'

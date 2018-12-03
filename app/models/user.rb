@@ -4,28 +4,27 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :first_name, :last_name, :birthday, :quote, :about, :username, :email, :adventurer_type, presence: true
-  validates :email, :username, uniqueness: { case_sensitive: false}
-  validates :password, length: {minimum: 6}
+  validates :email, :username, uniqueness: { case_sensitive: false }
+  validates :password, length: { minimum: 6 }
   has_many :avatars, dependent: :destroy
   has_many :adventures, dependent: :destroy
   has_many :posts, dependent: :destroy
   before_create :downcase_email, :capitalize_name, :downcase_username, :prepend_username
 
-
   def to_param
-  	"#{id}-#{first_name}-#{last_name}"
+    "#{id}-#{first_name}-#{last_name}"
   end
 
   def full_name
-  	"#{first_name} 	#{last_name}"
+    "#{first_name} 	#{last_name}"
   end
-  
+
   def age
-  	((Time.zone.now - birthday.to_time) / 1.year.seconds).floor
+    ((Time.zone.now - birthday.to_time) / 1.year.seconds).floor
   end
 
   def downcase_email
-  	email.downcase!
+    email.downcase!
   end
 
   def downcase_username
@@ -33,11 +32,10 @@ class User < ApplicationRecord
   end
 
   def prepend_username
-    username.prepend("@")
+    username.prepend('@')
   end
 
   def capitalize_name
-  	first_name.capitalize! && last_name.capitalize!
+    first_name.capitalize! && last_name.capitalize!
   end
-
 end

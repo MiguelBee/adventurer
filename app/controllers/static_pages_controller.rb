@@ -1,15 +1,13 @@
 class StaticPagesController < ApplicationController
-  def index 
-    @moto_trekkers = User.where(adventurer_type: "Moto Trekker").all
-    @backpackers = User.where(adventurer_type: "Backpacker").all
-    @boaters = User.where(adventurer_type: "Boater").all
-    @drivers = User.where(adventurer_type: "RV-er/Road Tripper").all
-    @bicyclers = User.where(adventurer_type: "Bicycler").all
+  def index
+    @moto_trekkers = User.paginate(page: params[:page], per_page: 5).where(adventurer_type: 'Moto Trekker')
+    @backpackers = User.paginate(page: params[:page], per_page: 5).where(adventurer_type: 'Backpacker')
+    @boaters = User.paginate(page: params[:page], per_page: 5).where(adventurer_type: 'Boater')
+    @drivers = User.paginate(page: params[:page], per_page: 5).where(adventurer_type: 'RV-er/Road Tripper')
+    @bicyclers = User.paginate(page: params[:page], per_page: 5).where(adventurer_type: 'Bicycler')
   end
 
-  def contact
-  end
+  def contact; end
 
-  def about
-  end
+  def about; end
 end

@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:create_travel_picture, :create_travel_log, :create_travel_video, :destroy]
+  before_action :authenticate_user!, only: %i[create_travel_picture create_travel_log create_travel_video destroy]
 
   def show
     @post = current_adventure.posts.find(params[:id])
@@ -12,9 +12,7 @@ class PostsController < ApplicationController
 
   def create_travel_log
     @log = current_adventure.posts.create(log_params.merge(user: current_user))
-    if @log.save
-      redirect_to adventure_path(current_adventure)
-    end
+    redirect_to adventure_path(current_adventure) if @log.save
   end
 
   def edit_log
@@ -39,7 +37,7 @@ class PostsController < ApplicationController
     redirect_to adventure_path(current_adventure)
   end
 
-private
+  private
 
   def current_adventure
     Adventure.find(params[:adventure_id])

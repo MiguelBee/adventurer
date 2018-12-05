@@ -1,4 +1,5 @@
 module ApplicationHelper
+	include Pagy::Frontend
   def profile_owner?
     current_user == @user
   end

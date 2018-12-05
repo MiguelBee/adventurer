@@ -1,13 +1,22 @@
 class StaticPagesController < ApplicationController
   def index
-    @moto_trekkers = User.paginate(page: params[:page], per_page: 5).where(adventurer_type: 'Moto Trekker')
-    @backpackers = User.paginate(page: params[:page], per_page: 5).where(adventurer_type: 'Backpacker')
-    @boaters = User.paginate(page: params[:page], per_page: 5).where(adventurer_type: 'Boater')
-    @drivers = User.paginate(page: params[:page], per_page: 5).where(adventurer_type: 'RV-er/Road Tripper')
-    @bicyclers = User.paginate(page: params[:page], per_page: 5).where(adventurer_type: 'Bicycler')
+  	@pagy, @top_adventurers = pagy(User.all)
+  	@pagy, @top_adventures = pagy(Adventure.all)
+    @pagy, @moto_trekkers = pagy(User.where(adventurer_type: 'Moto Trekker'))
+    @pagy, @backpackers = pagy(User.where(adventurer_type: 'Backpacker'))
+    @pagy, @boaters = pagy(User.where(adventurer_type: 'Boater'))
+    @pagy, @drivers = pagy(User.where(adventurer_type: 'RV-er/Road Tripper'))
+    @pagy, @bicyclers = pagy(User.where(adventurer_type: 'Bicycler'))
   end
 
   def contact; end
 
   def about; end
+
+	private
+
+	def highest_voted
+		order('votes DESC')
+	end
+
 end

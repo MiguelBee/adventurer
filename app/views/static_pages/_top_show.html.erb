@@ -1,0 +1,48 @@
+<div class="container-fluid">
+	<% unless resources.any? %>
+		<h1>There aren't any <%#= ########## %> yet</h1>
+	<% else %>
+		<h2 class="text-center"><%#=##########  %></h2>
+		<br>
+		<h5 class="adventurer_show_username float-left">Users</h5>
+		<h5 class="adventurer_show_about text-center"> Description</h5>
+		<div class="clear"></div>
+		<hr />
+
+		<% resources.each do |resource| %>
+		<div class="row">
+			<% if resource.is_a?(User) %>
+				<div class="col-4">
+					<%= link_to user_path(resource) do %>
+					<div class="row">
+						<%= image_tag(resource.avatars.last.picture, class: 'adventurers_show_image') if resource.avatars.any? %>
+						<div class="clear"></div>
+						<h5><%= resource.username %></h5>
+					</div>
+					<% end %>
+				</div>
+				<div class="col-8">
+					<p><%= resource.about %></p>
+				</div>
+			<% elsif resource.is_a?(Adventure) %>
+				<div class="col-4">
+					<%= link_to adventure_path(resource) do %>
+						<div class="row">
+							<%= resource.title %>
+							<div class="clear"></div>
+							<h5><%= resource.user.username %></h5>
+						</div>
+					<% end %>
+				</div>
+				<div class="col-8">
+					<p><%= resource.description %></p>
+				</div>
+			<% end %>
+		</div>
+		<hr />
+		<% end %>
+	<% end %>
+</div>
+
+<%== pagy_nav_bootstrap_compact @pagy %>
+

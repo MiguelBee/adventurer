@@ -12,33 +12,48 @@
 <% end %>
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="contact" aria-selected="true">Top Adventurers</a>
+    <a class="nav-link active<%#= 'active' if params[:active_tab] == 'top_adventurers' %>" id="home-tab" data-toggle="tab" href="#top_adventurers" role="tab" aria-controls="contact" aria-selected="true">Top Adventurers</a>
   </li>
    <li class="nav-item">
-    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#adventures" role="tab" aria-controls="contact" aria-selected="false">Top Adventures</a>
+    <a class="nav-link <%#= 'active' if params[:active_tab] == 'top_adventures' %>" id="contact-tab" data-toggle="tab" href="#top_adventures" role="tab" aria-controls="contact" aria-selected="false">Top Adventures</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#moto" role="tab" aria-controls="profile" aria-selected="false">Moto Trekkers</a>
+    <a class="nav-link <%#= 'active' if params[:active_tab] == 'moto' %>" id="contact-tab" data-toggle="tab" href="#moto" role="tab" aria-controls="profile" aria-selected="false">Moto Trekkers</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#backpacker" role="tab" aria-controls="contact" aria-selected="false">Backpackers</a>
+    <a class="nav-link <%#= 'active' if params[:active_tab] == 'backpack' %>" id="contact-tab" data-toggle="tab" href="#backpacker" role="tab" aria-controls="contact" aria-selected="false">Backpackers</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#rver" role="tab" aria-controls="contact" aria-selected="false">RVers/ Roadtrippers</a>
+    <a class="nav-link <%#= 'active' if params[:active_tab] == 'roadtrippers' %>" id="contact-tab" data-toggle="tab" href="#rver" role="tab" aria-controls="contact" aria-selected="false">RVers/ Roadtrippers</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#boater" role="tab" aria-controls="contact" aria-selected="false">Boater</a>
+    <a class="nav-link <%#= 'active' if params[:active_tab] == 'boaters' %>" id="contact-tab" data-toggle="tab" href="#boater" role="tab" aria-controls="contact" aria-selected="false">Boater</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#bicycle" role="tab" aria-controls="contact" aria-selected="false">Bicyclers</a>
+    <a class="nav-link<%#= 'active' if params[:active_tab] == 'bicyclers' %>" id="contact-tab" data-toggle="tab" href="#bicycle" role="tab" aria-controls="contact" aria-selected="false">Bicyclers</a>
   </li>
 </ul>
 <div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">Top Adventurers</div>
-  <div class="tab-pane fade" id="adventures" role="tabpanel" aria-labelledby="profile-tab">Top Adventures</div>
-  <div class="tab-pane fade" id="moto" role="tabpanel" aria-labelledby="profile-tab"><%= render "static_pages/moto_trekkers_show" %></div>
-  <div class="tab-pane fade" id="backpacker" role="tabpanel" aria-labelledby="profile-tab"><%= render "static_pages/backpackers_show" %></div>
-  <div class="tab-pane fade" id="rver" role="tabpanel" aria-labelledby="profile-tab"><%= render "static_pages/rvers_show" %></div>
-	<div class="tab-pane fade" id="boater" role="tabpanel" aria-labelledby="profile-tab"><%= render "static_pages/boaters_show" %></div>
-	<div class="tab-pane fade" id="bicycle" role="tabpanel" aria-labelledby="profile-tab"><%= render "static_pages/bicyclers_show" %></div>
+  <div class="tab-pane show active<%#= 'active' if params[:active_tab] == 'home' %>" id="home" role="tabpanel" aria-labelledby="home-tab"><%= render "top_show", resources: @top_adventurers %></div>
+  <div class="tab-pane <%#= 'active' if params[:active_tab] == 'adventures' %>" id="adventures" role="tabpanel" aria-labelledby="profile-tab"><%= render "top_show", resources: @top_adventures %></div>
+  <div class="tab-pane <%#= 'active' if params[:active_tab] == 'moto' %>" id="moto" role="tabpanel" aria-labelledby="profile-tab"><%= render "top_show", resources: @moto_trekkers %></div>
+  <div class="tab-pane <%#= 'active' if params[:active_tab] == 'backpack' %>" id="backpacker" role="tabpanel" aria-labelledby="profile-tab"><%= render "top_show", resources: @backpackers %></div>
+  <div class="tab-pane <%#= 'active' if params[:active_tab] == 'roadtrippers' %>" id="rver" role="tabpanel" aria-labelledby="profile-tab"><%= render "top_show", resources: @drivers %></div>
+	<div class="tab-pane <%#= 'active' if params[:active_tab] == 'boaters' %>" id="boater" role="tabpanel" aria-labelledby="profile-tab"><%= render "top_show", resources: @boaters %></div>
+	<div class="tab-pane <%#= 'active' if params[:active_tab] == 'bicyclers' %>" id="bicycle" role="tabpanel" aria-labelledby="profile-tab"><%= render "top_show", resources: @bicyclers %></div>
 </div>
+
+<!--
+<script>
+  $(function() {
+    $('a[data-toggle="tab"]').on('click', function(e) {
+        window.localStorage.setItem('activeTab', $(e.target).attr('href'));
+    });
+    var activeTab = window.localStorage.getItem('activeTab');
+    if (activeTab) {
+        $('#myTab a[href="' + activeTab + '"]').tab('show');
+        window.localStorage.removeItem("activeTab");
+    }
+});
+</script>
+-->

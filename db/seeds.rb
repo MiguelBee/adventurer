@@ -6,8 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+adventurer_types = ['Moto Trekker', 'Backpacker', 'Boater', 'RV-er/Road Tripper', 'Bicycler']
 
-20.times do
+50.times do
 	user = User.new(
 		first_name: Faker::Name.first_name,
 		last_name: Faker::Name.last_name,
@@ -16,7 +17,7 @@
 		about: Faker::Lorem.paragraph, 
 		username: Faker::Internet.username,
 		email: Faker::Internet.email,
-		adventurer_type: ['Moto Trekker', 'Backpacker', 'Boater', 'RV-er/Road Tripper', 'Bicycler'].sample,
+		adventurer_type: adventurer_types.shuffle.pop,
 		password: 'password',
 		password_confirmation: 'password'
 	)

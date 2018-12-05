@@ -83,6 +83,7 @@ gem 'acts-as-taggable-on', '~>6.0'
 
 gem 'trix'
 
-gem 'will_paginate', '~> 3.1.0'
+#gem 'will_paginate', '~> 3.1.0'
+gem 'pagy'
 
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'

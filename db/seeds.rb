@@ -9,19 +9,18 @@
 adventurer_types = ['Moto Trekker', 'Backpacker', 'Boater', 'RV-er/Road Tripper', 'Bicycler']
 
 50.times do
-	user = User.new(
-		first_name: Faker::Name.first_name,
-		last_name: Faker::Name.last_name,
-		birthday: Faker::Date.birthday(18, 65),
-		quote: Faker::MostInterestingManInTheWorld.quote,
-		about: Faker::Lorem.paragraph, 
-		username: Faker::Internet.username,
-		email: Faker::Internet.email,
-		adventurer_type: adventurer_types.shuffle.pop,
-		password: 'password',
-		password_confirmation: 'password'
-	)
-	#user.skip_confirmation
-	user.save!
-	
+  user = User.new(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    birthday: Faker::Date.birthday(18, 65),
+    quote: Faker::MostInterestingManInTheWorld.quote,
+    about: Faker::Lorem.paragraph,
+    username: Faker::Internet.username,
+    email: Faker::Internet.email,
+    adventurer_type: adventurer_types.shuffle.pop,
+    password: 'password',
+    password_confirmation: 'password'
+  )
+  # user.skip_confirmation
+  user.save!
 end

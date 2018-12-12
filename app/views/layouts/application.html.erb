@@ -18,6 +18,8 @@
 			<% if user_signed_in? %>
 		 		<%= link_to current_user.full_name, user_path(current_user), class: 'nav-link ml-auto'  %>
 		 		<%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'nav-link' %>
+		 	<% elsif !user_signed_in? && !index_page? %>
+		 		<%= link_to "Sign in", new_user_session_path, class: 'nav-link float-right' %>
 		 	<% end %>
 		</nav>
 	</div>

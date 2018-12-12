@@ -11,4 +11,8 @@ module ApplicationHelper
   def adventurer_type
     adventurer_type = ['Moto Trekker', 'Boater', 'RV-er/Road Tripper', 'Backpacker', 'Bicycler']
   end
+
+  def index_page?
+  	request.original_fullpath == '/'
+  end
 end
